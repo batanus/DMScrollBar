@@ -22,7 +22,7 @@ pod 'DMScrollBar'
 
 ## Author
 
-Dmitrii Medvedev, dmitrii.medvedev@ellation.com
+Dmitrii Medvedev, dima7711@gmail.com
 
 ## License
 

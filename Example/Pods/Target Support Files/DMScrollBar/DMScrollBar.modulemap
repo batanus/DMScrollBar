@@ -1,0 +1,6 @@
+framework module DMScrollBar {
+  umbrella header "DMScrollBar-umbrella.h"
+
+  export *
+  module * { export * }
+}

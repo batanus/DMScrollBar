@@ -1,5 +1,4 @@
 import XCTest
-import DMScrollBar
 
 class Tests: XCTestCase {
     

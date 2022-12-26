@@ -1,0 +1,690 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		2CFD0C89C9500D8C1001E16F0EE8E712 /* DMScrollBar */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7844AB9A650A93CD019601875263FE48 /* Build configuration list for PBXAggregateTarget "DMScrollBar" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = DMScrollBar;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		1628385A3B613F5A8063FA11866F2064 /* Pods-DMScrollBar_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB6996DDA47D9DBEE9D82FDE74E7A952 /* Pods-DMScrollBar_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29549F2CE3609643126CA62B15A814F7 /* Pods-DMScrollBar_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F114C2B0EB10CFDCB4F2A9505FEE4C2C /* Pods-DMScrollBar_Example-dummy.m */; };
+		406FECA80336731B89EFE0FD90E306CC /* Pods-DMScrollBar_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 193B9B5005E2679A66746B2073B4045B /* Pods-DMScrollBar_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FA5821F00DAFF946FBD9A5549CD81A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		ABB4F1F163AD59FF5DF185AF87763B24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		F112DBAE3801336630872665E604ABB9 /* Pods-DMScrollBar_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E2853AF9A5C97C42DEDDDAB8590D68EE /* Pods-DMScrollBar_Tests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC1E864C80AAF5B7CFA0948A5C7C2D36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CFD0C89C9500D8C1001E16F0EE8E712;
+			remoteInfo = DMScrollBar;
+		};
+		D21A5B23821C9F859E3D0E5C3D01899B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 351F47E22ECD461E90EC972AC10DF6AC;
+			remoteInfo = "Pods-DMScrollBar_Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		009A46C49212800BFA3CACA4BAF4BBD1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		12C51B2698C69D66AEFC88F8C1BEB4C0 /* Pods-DMScrollBar_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DMScrollBar_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		193B9B5005E2679A66746B2073B4045B /* Pods-DMScrollBar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DMScrollBar_Example-umbrella.h"; sourceTree = "<group>"; };
+		1B7A5948FC408536EE5F4024B38A1F43 /* Pods-DMScrollBar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DMScrollBar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		22293AFF60C9D26992217E1618029EBE /* DMScrollBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DMScrollBar.debug.xcconfig; sourceTree = "<group>"; };
+		2B16C629D00F5EB6A502E100E580799D /* Pods-DMScrollBar_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DMScrollBar_Example-Info.plist"; sourceTree = "<group>"; };
+		327E7C21E0FBDB46778F342CA399C8BA /* Pods-DMScrollBar_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DMScrollBar_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3F00C62F6C1B370F3E0492C35167A230 /* Pods-DMScrollBar_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DMScrollBar_Tests-Info.plist"; sourceTree = "<group>"; };
+		3F06C0C2478A6A200CD1FD9590A610EE /* DMScrollBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DMScrollBar.release.xcconfig; sourceTree = "<group>"; };
+		4C50A05576F53640EFD74FF50A48A08C /* Pods-DMScrollBar_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DMScrollBar_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		5182BB66C1A983E705DCB8DF625CEF21 /* Pods-DMScrollBar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DMScrollBar_Example.release.xcconfig"; sourceTree = "<group>"; };
+		56B4164168EAD3854A35743CB3D75DB4 /* DMScrollBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = DMScrollBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5E210FA71BD51398DCCB3C39239F9DA4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		653D426300DFBB5B7174245AA6893565 /* Pods-DMScrollBar_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DMScrollBar_Tests"; path = Pods_DMScrollBar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ED7338110B4D50969BD8CDF6AA67160 /* Pods-DMScrollBar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DMScrollBar_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8208E31A8095CFBA8E1F36C95ED123EE /* Pods-DMScrollBar_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DMScrollBar_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		86A5830031365DEEA58579D612F400DD /* Pods-DMScrollBar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DMScrollBar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AA44C0590A1B20D8675B884693878FA5 /* Pods-DMScrollBar_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-DMScrollBar_Example"; path = Pods_DMScrollBar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2853AF9A5C97C42DEDDDAB8590D68EE /* Pods-DMScrollBar_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DMScrollBar_Tests-dummy.m"; sourceTree = "<group>"; };
+		F114C2B0EB10CFDCB4F2A9505FEE4C2C /* Pods-DMScrollBar_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DMScrollBar_Example-dummy.m"; sourceTree = "<group>"; };
+		F444A096FEB4B46D5BBC450CCADA9AC9 /* Pods-DMScrollBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DMScrollBar_Example.modulemap"; sourceTree = "<group>"; };
+		FB6996DDA47D9DBEE9D82FDE74E7A952 /* Pods-DMScrollBar_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DMScrollBar_Tests-umbrella.h"; sourceTree = "<group>"; };
+		FE269A6235A4F8349B792F54AD8A0627 /* Pods-DMScrollBar_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DMScrollBar_Tests.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BD3EADE087D8B67FE2A77096F28C7C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FA5821F00DAFF946FBD9A5549CD81A5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D3E019BE6381FBEB971CD511E24BE23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABB4F1F163AD59FF5DF185AF87763B24 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0175AA4883864FACAEF67115B0CBB021 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA44C0590A1B20D8675B884693878FA5 /* Pods-DMScrollBar_Example */,
+				653D426300DFBB5B7174245AA6893565 /* Pods-DMScrollBar_Tests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15451E775DCCAE9B4C17A41DA472D022 /* Pods-DMScrollBar_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FE269A6235A4F8349B792F54AD8A0627 /* Pods-DMScrollBar_Tests.modulemap */,
+				327E7C21E0FBDB46778F342CA399C8BA /* Pods-DMScrollBar_Tests-acknowledgements.markdown */,
+				1B7A5948FC408536EE5F4024B38A1F43 /* Pods-DMScrollBar_Tests-acknowledgements.plist */,
+				E2853AF9A5C97C42DEDDDAB8590D68EE /* Pods-DMScrollBar_Tests-dummy.m */,
+				3F00C62F6C1B370F3E0492C35167A230 /* Pods-DMScrollBar_Tests-Info.plist */,
+				FB6996DDA47D9DBEE9D82FDE74E7A952 /* Pods-DMScrollBar_Tests-umbrella.h */,
+				86A5830031365DEEA58579D612F400DD /* Pods-DMScrollBar_Tests.debug.xcconfig */,
+				6ED7338110B4D50969BD8CDF6AA67160 /* Pods-DMScrollBar_Tests.release.xcconfig */,
+			);
+			name = "Pods-DMScrollBar_Tests";
+			path = "Target Support Files/Pods-DMScrollBar_Tests";
+			sourceTree = "<group>";
+		};
+		18EF48365082B098B8148674F4A11B56 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				22293AFF60C9D26992217E1618029EBE /* DMScrollBar.debug.xcconfig */,
+				3F06C0C2478A6A200CD1FD9590A610EE /* DMScrollBar.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/DMScrollBar";
+			sourceTree = "<group>";
+		};
+		1967B2650CE730963AAFED89F8FB11AF /* Pods-DMScrollBar_Example */ = {
+			isa = PBXGroup;
+			children = (
+				F444A096FEB4B46D5BBC450CCADA9AC9 /* Pods-DMScrollBar_Example.modulemap */,
+				12C51B2698C69D66AEFC88F8C1BEB4C0 /* Pods-DMScrollBar_Example-acknowledgements.markdown */,
+				8208E31A8095CFBA8E1F36C95ED123EE /* Pods-DMScrollBar_Example-acknowledgements.plist */,
+				F114C2B0EB10CFDCB4F2A9505FEE4C2C /* Pods-DMScrollBar_Example-dummy.m */,
+				2B16C629D00F5EB6A502E100E580799D /* Pods-DMScrollBar_Example-Info.plist */,
+				193B9B5005E2679A66746B2073B4045B /* Pods-DMScrollBar_Example-umbrella.h */,
+				4C50A05576F53640EFD74FF50A48A08C /* Pods-DMScrollBar_Example.debug.xcconfig */,
+				5182BB66C1A983E705DCB8DF625CEF21 /* Pods-DMScrollBar_Example.release.xcconfig */,
+			);
+			name = "Pods-DMScrollBar_Example";
+			path = "Target Support Files/Pods-DMScrollBar_Example";
+			sourceTree = "<group>";
+		};
+		1A725522F004BCD7CE6C78653D60A191 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1967B2650CE730963AAFED89F8FB11AF /* Pods-DMScrollBar_Example */,
+				15451E775DCCAE9B4C17A41DA472D022 /* Pods-DMScrollBar_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		9FB6AF0316749E56AA509C1840BB2463 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD7ADE3E9AC32630B40963CF51F2E503 /* DMScrollBar */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		CD7ADE3E9AC32630B40963CF51F2E503 /* DMScrollBar */ = {
+			isa = PBXGroup;
+			children = (
+				DA2702C5DD99C55010DD2C7A3A68AA54 /* Pod */,
+				18EF48365082B098B8148674F4A11B56 /* Support Files */,
+			);
+			name = DMScrollBar;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				9FB6AF0316749E56AA509C1840BB2463 /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				0175AA4883864FACAEF67115B0CBB021 /* Products */,
+				1A725522F004BCD7CE6C78653D60A191 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA2702C5DD99C55010DD2C7A3A68AA54 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				56B4164168EAD3854A35743CB3D75DB4 /* DMScrollBar.podspec */,
+				5E210FA71BD51398DCCB3C39239F9DA4 /* LICENSE */,
+				009A46C49212800BFA3CACA4BAF4BBD1 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3752A27C1A590573F874C64244FBE50B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				406FECA80336731B89EFE0FD90E306CC /* Pods-DMScrollBar_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE46244BAEAD6C6A996AB3BF36FA9D61 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1628385A3B613F5A8063FA11866F2064 /* Pods-DMScrollBar_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2462BFC8D02508443CD53958940C93EF /* Pods-DMScrollBar_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 335A4B996C1CB086B0E27DAEC71575A8 /* Build configuration list for PBXNativeTarget "Pods-DMScrollBar_Tests" */;
+			buildPhases = (
+				DE46244BAEAD6C6A996AB3BF36FA9D61 /* Headers */,
+				30C5860445FC18E41D1CC0AB2F3ABC7F /* Sources */,
+				6BD3EADE087D8B67FE2A77096F28C7C7 /* Frameworks */,
+				15D2CED8AF15C51E4CEF41CBA2DDA73A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C54562C7F12635D53E7CA50D9663D1B7 /* PBXTargetDependency */,
+			);
+			name = "Pods-DMScrollBar_Tests";
+			productName = Pods_DMScrollBar_Tests;
+			productReference = 653D426300DFBB5B7174245AA6893565 /* Pods-DMScrollBar_Tests */;
+			productType = "com.apple.product-type.framework";
+		};
+		351F47E22ECD461E90EC972AC10DF6AC /* Pods-DMScrollBar_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43BBD2634D56E8DB7FDC97D9C7704F2C /* Build configuration list for PBXNativeTarget "Pods-DMScrollBar_Example" */;
+			buildPhases = (
+				3752A27C1A590573F874C64244FBE50B /* Headers */,
+				46FE8E199BFE003AC21C11029520D0BD /* Sources */,
+				7D3E019BE6381FBEB971CD511E24BE23 /* Frameworks */,
+				E638EB73A6864FE5A3B9F972358B34DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6FC23FE1B5600A90DCECC3EB7667DEFC /* PBXTargetDependency */,
+			);
+			name = "Pods-DMScrollBar_Example";
+			productName = Pods_DMScrollBar_Example;
+			productReference = AA44C0590A1B20D8675B884693878FA5 /* Pods-DMScrollBar_Example */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 0175AA4883864FACAEF67115B0CBB021 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2CFD0C89C9500D8C1001E16F0EE8E712 /* DMScrollBar */,
+				351F47E22ECD461E90EC972AC10DF6AC /* Pods-DMScrollBar_Example */,
+				2462BFC8D02508443CD53958940C93EF /* Pods-DMScrollBar_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15D2CED8AF15C51E4CEF41CBA2DDA73A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E638EB73A6864FE5A3B9F972358B34DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30C5860445FC18E41D1CC0AB2F3ABC7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F112DBAE3801336630872665E604ABB9 /* Pods-DMScrollBar_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46FE8E199BFE003AC21C11029520D0BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29549F2CE3609643126CA62B15A814F7 /* Pods-DMScrollBar_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6FC23FE1B5600A90DCECC3EB7667DEFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DMScrollBar;
+			target = 2CFD0C89C9500D8C1001E16F0EE8E712 /* DMScrollBar */;
+			targetProxy = BC1E864C80AAF5B7CFA0948A5C7C2D36 /* PBXContainerItemProxy */;
+		};
+		C54562C7F12635D53E7CA50D9663D1B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-DMScrollBar_Example";
+			target = 351F47E22ECD461E90EC972AC10DF6AC /* Pods-DMScrollBar_Example */;
+			targetProxy = D21A5B23821C9F859E3D0E5C3D01899B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2F2FDF054AEFF7AFDE55E1307C065E3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86A5830031365DEEA58579D612F400DD /* Pods-DMScrollBar_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DMScrollBar_Tests/Pods-DMScrollBar_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DMScrollBar_Tests/Pods-DMScrollBar_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		62967F43C15A936825BC38A9563BA1C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F06C0C2478A6A200CD1FD9590A610EE /* DMScrollBar.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		703DB7251E7F87922334DDCBA13E9778 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5182BB66C1A983E705DCB8DF625CEF21 /* Pods-DMScrollBar_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DMScrollBar_Example/Pods-DMScrollBar_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DMScrollBar_Example/Pods-DMScrollBar_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		77FCDECF26B44A282D7D2CA20CFA66DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6ED7338110B4D50969BD8CDF6AA67160 /* Pods-DMScrollBar_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DMScrollBar_Tests/Pods-DMScrollBar_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DMScrollBar_Tests/Pods-DMScrollBar_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8DE5143C03248BB6CD542DE3963D6F3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		9E406C6AAF85E580207CD97B0044DEAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		CFE54D21ACFB710A26AB05A4026C08B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C50A05576F53640EFD74FF50A48A08C /* Pods-DMScrollBar_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-DMScrollBar_Example/Pods-DMScrollBar_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-DMScrollBar_Example/Pods-DMScrollBar_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D8CB448B992375E01D7514EDB3BDBB73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22293AFF60C9D26992217E1618029EBE /* DMScrollBar.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		335A4B996C1CB086B0E27DAEC71575A8 /* Build configuration list for PBXNativeTarget "Pods-DMScrollBar_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F2FDF054AEFF7AFDE55E1307C065E3A /* Debug */,
+				77FCDECF26B44A282D7D2CA20CFA66DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43BBD2634D56E8DB7FDC97D9C7704F2C /* Build configuration list for PBXNativeTarget "Pods-DMScrollBar_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFE54D21ACFB710A26AB05A4026C08B2 /* Debug */,
+				703DB7251E7F87922334DDCBA13E9778 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DE5143C03248BB6CD542DE3963D6F3A /* Debug */,
+				9E406C6AAF85E580207CD97B0044DEAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7844AB9A650A93CD019601875263FE48 /* Build configuration list for PBXAggregateTarget "DMScrollBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8CB448B992375E01D7514EDB3BDBB73 /* Debug */,
+				62967F43C15A936825BC38A9563BA1C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

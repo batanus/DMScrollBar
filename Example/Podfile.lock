@@ -1,0 +1,16 @@
+PODS:
+  - DMScrollBar (1.0.0)
+
+DEPENDENCIES:
+  - DMScrollBar (from `../`)
+
+EXTERNAL SOURCES:
+  DMScrollBar:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DMScrollBar: 70b3530a417cab0fa582be5240d17a5aa86606c5
+
+PODFILE CHECKSUM: 507fb18072a74f73e82cc05d6cc741591f4798ee
+
+COCOAPODS: 1.11.3

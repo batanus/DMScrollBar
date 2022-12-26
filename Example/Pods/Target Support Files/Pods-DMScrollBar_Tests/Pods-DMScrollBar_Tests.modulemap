@@ -1,0 +1,6 @@
+framework module Pods_DMScrollBar_Tests {
+  umbrella header "Pods-DMScrollBar_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
