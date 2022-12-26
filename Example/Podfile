@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'DMScrollBar_Example' do
+  pod 'DMScrollBar', :path => '../'
+
+  target 'DMScrollBar_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
