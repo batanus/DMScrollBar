@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "summary": "A short description of DMScrollBar.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Dmitrii Medvedev/DMScrollBar",
+  "homepage": "https://github.com/batanus/DMScrollBar",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,11 @@
     "Dmitrii Medvedev": "dima7711@gmail.com"
   },
   "source": {
-    "git": "https://github.com/Dmitrii Medvedev/DMScrollBar.git",
+    "git": "https://github.com/batanus/DMScrollBar.git",
     "tag": "1.0.0"
   },
   "platforms": {
-    "ios": "13.0"
+    "ios": "14.0"
   },
   "source_files": "DMScrollBar/Classes/**/*"
 }

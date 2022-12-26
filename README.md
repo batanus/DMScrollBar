@@ -1,6 +1,6 @@
 # DMScrollBar
 
-[![CI Status](https://img.shields.io/travis/Dmitrii Medvedev/DMScrollBar.svg?style=flat)](https://travis-ci.org/Dmitrii Medvedev/DMScrollBar)
+[![CI Status](https://img.shields.io/travis/batanus/DMScrollBar.svg?style=flat)](https://travis-ci.org/batanus/DMScrollBar)
 [![Version](https://img.shields.io/cocoapods/v/DMScrollBar.svg?style=flat)](https://cocoapods.org/pods/DMScrollBar)
 [![License](https://img.shields.io/cocoapods/l/DMScrollBar.svg?style=flat)](https://cocoapods.org/pods/DMScrollBar)
 [![Platform](https://img.shields.io/cocoapods/p/DMScrollBar.svg?style=flat)](https://cocoapods.org/pods/DMScrollBar)

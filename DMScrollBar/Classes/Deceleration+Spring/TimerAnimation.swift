@@ -1,3 +1,4 @@
+import Foundation
 import QuartzCore
 
 final class TimerAnimation {
@@ -21,7 +22,7 @@ final class TimerAnimation {
         self.completion = completion
         self.firstFrameTimestamp = CACurrentMediaTime()
         let displayLink = CADisplayLink(target: self, selector: #selector(handleFrame(_:)))
-        displayLink.add(to: .main, forMode: RunLoop.Mode.common)
+        displayLink.add(to: .main, forMode: RunLoopMode.commonModes)
         self.displayLink = displayLink
     }
     
