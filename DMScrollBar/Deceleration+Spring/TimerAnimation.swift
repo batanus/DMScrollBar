@@ -15,17 +15,17 @@ final class TimerAnimation {
     deinit {
         invalidate()
     }
-    
+
     init(duration: TimeInterval, animations: @escaping Animations, completion: Completion? = nil) {
         self.duration = duration
         self.animations = animations
         self.completion = completion
         self.firstFrameTimestamp = CACurrentMediaTime()
         let displayLink = CADisplayLink(target: self, selector: #selector(handleFrame(_:)))
-        displayLink.add(to: .main, forMode: RunLoopMode.commonModes)
+        displayLink.add(to: .main, forMode: RunLoop.Mode.common)
         self.displayLink = displayLink
     }
-    
+
     func invalidate() {
         guard running else { return }
         running = false

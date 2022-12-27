@@ -289,9 +289,9 @@ public class ScrollBar: UIView {
         guard let offsetLabelText = delegate?.indicatorTitle(forOffset: scrollViewOffset) else { return }
         animateAdditionalInfoViewShow()
         if offsetLabelText == offsetLabel.text { return }
-        let direction: String = {
-            guard let previousOffset else { return kCATransitionFromTop }
-            return scrollViewOffset > previousOffset ? kCATransitionFromTop : kCATransitionFromBottom
+        let direction: CATransitionSubtype? = {
+            guard let previousOffset else { return nil }
+            return scrollViewOffset > previousOffset ? .fromTop : .fromBottom
         }()
         offsetLabel.setup(text: offsetLabelText, direction: direction)
         generateHapticFeedback()
@@ -304,7 +304,7 @@ public class ScrollBar: UIView {
         let parameters = DecelerationTimingParameters(
             initialValue: scrollIndicatorTopOffset,
             initialVelocity: velocity,
-            decelerationRate: UIScrollViewDecelerationRateNormal,
+            decelerationRate: UIScrollView.DecelerationRate.normal.rawValue,
             threshold: 0.5 / UIScreen.main.scale
         )
 

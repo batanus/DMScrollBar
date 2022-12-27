@@ -2,7 +2,7 @@
   "name": "DMScrollBar",
   "version": "1.0.0",
   "summary": "A short description of DMScrollBar.",
-  "description": "TODO: Add long description of the pod here.",
+  "description": "Customizable Scroll Bar for Scroll View with additional info label appearing during the scroll.",
   "homepage": "https://github.com/batanus/DMScrollBar",
   "license": {
     "type": "MIT",
@@ -15,8 +15,12 @@
     "git": "https://github.com/batanus/DMScrollBar.git",
     "tag": "1.0.0"
   },
+  "swift_versions": [
+    "5.7"
+  ],
   "platforms": {
     "ios": "14.0"
   },
-  "source_files": "DMScrollBar/Classes/**/*"
+  "source_files": "DMScrollBar/**/*",
+  "swift_version": "5.7"
 }
