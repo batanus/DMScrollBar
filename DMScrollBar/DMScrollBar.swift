@@ -143,15 +143,28 @@ public class DMScrollBar: UIView {
             .publisher(for: \.state)
             .dropFirst()
             .removeDuplicates()
-            .sink{ [weak self] in self?.handleScrollViewGestureState($0) }
+            .sink { [weak self] in self?.handleScrollViewGestureState($0) }
             .store(in: &cancellables)
+        /**
+         Next observation is needed to keep scrollBar always on top, when new subviews are added to the scrollView.
+         For example, when adding scrollBar to the tableView, the tableView section headers overlaps scrollBar, and therefore scrollBar gestures are not recognized.
+         layer.sublayers property is used for observation because subviews property is not KVO compliant.
+         */
+        scrollView?
+            .publisher(for: \.layer.sublayers)
+            .sink { [weak self] _ in self?.bringScrollBarToFront() }
+            .store(in: &cancellables)
+    }
+
+    private func bringScrollBarToFront() {
+        scrollView?.bringSubviewToFront(self)
     }
 
     private func handleScrollViewOffsetChange(previousOffset: CGPoint?, newOffset: CGPoint) {
         animateScrollBarShow()
         scrollIndicatorTopConstraint?.constant = scrollIndicatorOffsetFromScrollOffset(newOffset.y)
         startHideTimerIfNeeded()
-        // This is needed to keep additional info title up-to-date during scroll view decelerate
+        /// Next code is needed to keep additional info label title up-to-date during scroll view decelerate
         guard additionalInfoView.alpha == 1 && isPanGestureInactive else { return }
         updateAdditionalInfoViewState(forScrollOffset: newOffset.y, previousOffset: previousOffset?.y)
     }
