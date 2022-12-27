@@ -34,6 +34,7 @@ public class DMScrollBar: UIView {
         self.delegate = delegate
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
+        setupScrollView()
         setupConstraints()
         setupScrollIndicator()
         setupAdditionalInfoView()
@@ -60,6 +61,10 @@ public class DMScrollBar: UIView {
 
     private func setupInitialAlpha() {
         alpha = configuration.isAlwaysVisible ? 1 : 0
+    }
+
+    private func setupScrollView() {
+        scrollView?.showsVerticalScrollIndicator = false
     }
 
     private func setupScrollIndicator() {
