@@ -27,7 +27,7 @@ final class ViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.contentInset.top = 16
-        tableView.scrollIndicatorStyle = .custom(configuration: .default, delegate: self)
+        tableView.configureScrollBar(with: .default, delegate: self)
     }
 
     private func setupSections() {
@@ -64,10 +64,13 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: DMScrollBarDelegate {
+    /// In this example, this method returns the section header title for the top visible section
     func indicatorTitle(forOffset offset: CGFloat) -> String? {
         guard let section = (0..<tableView.numberOfSections).first(where: { section in
             let sectionRect = tableView.rect(forSection: section)
-            return sectionRect.minY...sectionRect.maxY ~= offset
+            let minY: CGFloat = section == 0 ? -.greatestFiniteMagnitude : sectionRect.minY
+            let maxY: CGFloat = section == tableView.numberOfSections - 1 ? .greatestFiniteMagnitude : sectionRect.maxY
+            return minY...maxY ~= offset
         }) else { return nil }
         let sectionHeaderTitle = tableView(tableView, titleForHeaderInSection: section)
 

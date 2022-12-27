@@ -44,7 +44,7 @@ extension DMScrollBar {
             ///   - rounderCorners: Scroll bar indicator corners which should be rounded
             public init(
                 size: CGSize = CGSize(width: 34, height: 34),
-                backgroundColor: UIColor = UIColor.systemGray,
+                backgroundColor: UIColor = UIColor.defaultScrollBarBackground,
                 insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0),
                 insetsFollowsSafeArea: Bool = true,
                 image: UIImage? = UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.systemBackground),
@@ -83,7 +83,7 @@ extension DMScrollBar {
                 font: UIFont = UIFont.systemFont(ofSize: 13),
                 textColor: UIColor = UIColor.systemBackground,
                 distanceToScrollIndicator: CGFloat = 40,
-                backgroundColor: UIColor = UIColor.systemGray,
+                backgroundColor: UIColor = UIColor.defaultScrollBarBackground,
                 textInsets: UIEdgeInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10),
                 rounderCorners: RoundedCorners = .allRounded
             ) {

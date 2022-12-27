@@ -5,32 +5,17 @@ private enum AssociatedKeys {
     static var scrollBar = "scrollBar"
 }
 
-public enum ScrollIndicatorStyle {
-    case `default`
-    case custom(configuration: DMScrollBar.Configuration = .default, delegate: DMScrollBarDelegate? = nil)
-}
-
 public extension UIScrollView {
     var scrollBar: DMScrollBar? {
         get {
             objc_getAssociatedObject(self, &AssociatedKeys.scrollBar) as? DMScrollBar
         } set {
-            objc_setAssociatedObject(self, &AssociatedKeys.scrollBar, newValue, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &AssociatedKeys.scrollBar, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
 
-    var scrollIndicatorStyle: ScrollIndicatorStyle {
-        get {
-            objc_getAssociatedObject(self, &AssociatedKeys.scrollIndicatorStyle) as? ScrollIndicatorStyle ?? .default
-        } set {
-            objc_setAssociatedObject(self, &AssociatedKeys.scrollIndicatorStyle, newValue, .OBJC_ASSOCIATION_RETAIN)
-            switch newValue {
-            case .default:
-                scrollBar?.removeFromSuperview()
-                scrollBar = nil
-            case .custom(let configuration, let delegate):
-                scrollBar = DMScrollBar(scrollView: self, delegate: delegate, configuration: configuration)
-            }
-        }
+    func configureScrollBar(with configuration: DMScrollBar.Configuration = .default, delegate: DMScrollBarDelegate? = nil) {
+        let scrollBar = DMScrollBar(scrollView: self, delegate: delegate, configuration: configuration)
+        self.scrollBar = scrollBar
     }
 }
