@@ -28,6 +28,7 @@
 		BF2B34B9295AFE9400998B39 /* DMScrollBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2B34B7295AFE9400998B39 /* DMScrollBarDelegate.swift */; };
 		BF2B34BB295B09A900998B39 /* UIScrollView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2B34BA295B09A900998B39 /* UIScrollView+Utils.swift */; };
 		BF2B3839295B213200998B39 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2B3838295B213200998B39 /* UIColor+Utils.swift */; };
+		BF2B462B295B377100998B39 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2B462A295B377100998B39 /* UIView+Utils.swift */; };
 		C6543F0321E7FA35228D185C891F03B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		CEC7C5AECF509F98187064AFF3507927 /* Publisher+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF475A9A00D08C551E18DB81F6C2B7 /* Publisher+Utils.swift */; };
 		E8A71CE52BFAB87C5E58C1EF3ABAFA2D /* CGPoint+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBE8D36182043BAA90D8DF1D4C198CE /* CGPoint+Utils.swift */; };
@@ -94,6 +95,7 @@
 		BF2B34B7295AFE9400998B39 /* DMScrollBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMScrollBarDelegate.swift; path = DMScrollBar/DMScrollBarDelegate.swift; sourceTree = "<group>"; };
 		BF2B34BA295B09A900998B39 /* UIScrollView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Utils.swift"; sourceTree = "<group>"; };
 		BF2B3838295B213200998B39 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		BF2B462A295B377100998B39 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		CEA3966852A720E8A2E2F77CF35DA989 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D677FA3FE3FB693F21E2C371D2A4D668 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC2AB55638BEE7F70D7BFC0A874D2B0C /* UISpringTimingParameters+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UISpringTimingParameters+Utils.swift"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				4313C941229B556FF43E0C755EB7CDB0 /* UILabel+Utils.swift */,
 				DC2AB55638BEE7F70D7BFC0A874D2B0C /* UISpringTimingParameters+Utils.swift */,
 				BF2B34BA295B09A900998B39 /* UIScrollView+Utils.swift */,
+				BF2B462A295B377100998B39 /* UIView+Utils.swift */,
 			);
 			name = Utils;
 			path = DMScrollBar/Utils;
@@ -446,6 +449,7 @@
 			files = (
 				FBF78C6284545A6A0783EAA8C5E1B1EB /* CASpringAnimation+Utils.swift in Sources */,
 				E8A71CE52BFAB87C5E58C1EF3ABAFA2D /* CGPoint+Utils.swift in Sources */,
+				BF2B462B295B377100998B39 /* UIView+Utils.swift in Sources */,
 				AC4AB182DF342ECB47B495788DDA2186 /* Comparable+Utils.swift in Sources */,
 				64FDF0A3609EEA7A5E13393EF8D5BEDD /* ConvenienceFunctions.swift in Sources */,
 				5EB664579D254D7E22852D0CF90ACE53 /* DecelerationTimingParameters.swift in Sources */,

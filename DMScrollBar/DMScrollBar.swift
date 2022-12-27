@@ -161,6 +161,7 @@ public class DMScrollBar: UIView {
     }
 
     private func handleScrollViewOffsetChange(previousOffset: CGPoint?, newOffset: CGPoint) {
+        guard let scrollView, scrollView.frame.height < scrollView.contentSize.height else { return }
         animateScrollBarShow()
         scrollIndicatorTopConstraint?.constant = scrollIndicatorOffsetFromScrollOffset(newOffset.y)
         startHideTimerIfNeeded()
@@ -209,8 +210,20 @@ public class DMScrollBar: UIView {
 
     private func handlePanGestureChanged(_ recognizer: UIPanGestureRecognizer) {
         guard let scrollView else { return }
-        let offset = recognizer.translation(in: scrollView)
-        let newScrollOffset = scrollOffsetFromScrollIndicatorOffset((scrollIndicatorOffsetOnGestureStart ?? 0) + offset.y)
+        let scrollIndicatorOffset: CGFloat = {
+            let offset = recognizer.translation(in: scrollView)
+            let scrollIndicatorOffsetOnGestureStart = scrollIndicatorOffsetOnGestureStart ?? 0
+            let scrollIndicatorOffset = scrollIndicatorOffsetOnGestureStart + offset.y
+            if scrollIndicatorOffset < scrollIndicatorOffsetBounds.minY {
+                let adjustedOffset = offset.y + scrollIndicatorOffsetOnGestureStart
+                return scrollIndicatorOffsetBounds.minY + adjustedOffset / 5
+            } else if scrollIndicatorOffset > scrollIndicatorOffsetBounds.maxY {
+                let adjustedOffset = scrollIndicatorOffsetBounds.maxY - scrollIndicatorOffsetOnGestureStart - offset.y
+                return scrollIndicatorOffsetBounds.maxY - adjustedOffset / 5
+            }
+            return scrollIndicatorOffset
+        }()
+        let newScrollOffset = scrollOffsetFromScrollIndicatorOffset(scrollIndicatorOffset)
         let previousOffset = scrollView.contentOffset
         scrollView.setContentOffset(CGPoint(x: 0, y: newScrollOffset), animated: false)
         updateAdditionalInfoViewState(forScrollOffset: newScrollOffset, previousOffset: previousOffset.y)
