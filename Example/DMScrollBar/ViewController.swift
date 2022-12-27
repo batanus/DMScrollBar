@@ -1,24 +1,76 @@
-//
-//  ViewController.swift
-//  DMScrollBar
-//
-//  Created by Dmitrii Medvedev on 12/26/2022.
-//  Copyright (c) 2022 Dmitrii Medvedev. All rights reserved.
-//
-
 import UIKit
+import DMScrollBar
 
-class ViewController: UIViewController {
+struct Section {
+    let title: String
+    let items: [String]
+}
+
+final class ViewController: UIViewController {
+    @IBOutlet var tableView: UITableView!
+
+    private var sections = [Section]()
+    private let headerDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        setupTableView()
+        setupSections()
+        title = "DMScrollBar"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.contentInset.top = 16
+        tableView.scrollIndicatorStyle = .custom(configuration: .default, delegate: self)
     }
 
+    private func setupSections() {
+        sections = (0..<10).map { sectionNumber in
+            Section(
+                title: headerDateFormatter.string(from: Date(timeIntervalSinceNow: TimeInterval(86400 * sectionNumber))),
+                items: (0...20).map { "Item #\($0)" }
+            )
+        }
+    }
 }
 
+extension ViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sections[section].items.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section].title
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = sections[indexPath.section].items[indexPath.item]
+        cell.contentConfiguration = configuration
+
+        return cell
+    }
+}
+
+extension ViewController: DMScrollBarDelegate {
+    func indicatorTitle(forOffset offset: CGFloat) -> String? {
+        guard let section = (0..<tableView.numberOfSections).first(where: { section in
+            let sectionRect = tableView.rect(forSection: section)
+            return sectionRect.minY...sectionRect.maxY ~= offset
+        }) else { return nil }
+        let sectionHeaderTitle = tableView(tableView, titleForHeaderInSection: section)
+
+        return sectionHeaderTitle
+    }
+}

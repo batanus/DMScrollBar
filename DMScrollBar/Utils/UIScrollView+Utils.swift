@@ -7,7 +7,7 @@ private enum AssociatedKeys {
 
 public enum ScrollIndicatorStyle {
     case `default`
-    case custom(DMScrollBar.Configuration = .default, DMScrollBarDelegate? = nil)
+    case custom(configuration: DMScrollBar.Configuration = .default, delegate: DMScrollBarDelegate? = nil)
 }
 
 public extension UIScrollView {

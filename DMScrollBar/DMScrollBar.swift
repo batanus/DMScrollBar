@@ -133,9 +133,9 @@ public class DMScrollBar: UIView {
     private func observeScrollViewProperties() {
         scrollView?
             .publisher(for: \.contentOffset)
-            .dropFirst()
             .removeDuplicates()
             .withPrevious()
+            .dropFirst(2)
             .sink { [weak self] in self?.handleScrollViewOffsetChange(previousOffset: $0, newOffset: $1) }
             .store(in: &cancellables)
         scrollView?
@@ -339,7 +339,7 @@ public class DMScrollBar: UIView {
 
     private var minScrollViewOffset: CGFloat {
         guard let scrollView else { return 0 }
-        return scrollView.contentInset.top
+        return -scrollView.contentInset.top - scrollView.safeAreaInsets.top
     }
 
     private var maxScrollViewOffset: CGFloat {
@@ -352,7 +352,7 @@ public class DMScrollBar: UIView {
             x: 0,
             y: minScrollIndicatorOffset,
             width: CGFLOAT_MIN,
-            height: maxScrollIndicatorOffset
+            height: maxScrollIndicatorOffset - minScrollIndicatorOffset
         )
     }
 
@@ -361,7 +361,7 @@ public class DMScrollBar: UIView {
             x: 0,
             y: minScrollViewOffset,
             width: CGFLOAT_MIN,
-            height: maxScrollViewOffset
+            height: maxScrollViewOffset - minScrollViewOffset
         )
     }
 
@@ -371,14 +371,13 @@ public class DMScrollBar: UIView {
 
     private func scrollOffsetFromScrollIndicatorOffset(_ offset: CGFloat) -> CGFloat {
         let scrollIndicatorOffsetPercent = (offset - minScrollIndicatorOffset) / (maxScrollIndicatorOffset - minScrollIndicatorOffset)
-        let sanitizedScrollIndicatorOffsetPercent = scrollIndicatorOffsetPercent
-        let scrollOffset = maxScrollViewOffset * sanitizedScrollIndicatorOffsetPercent
+        let scrollOffset = scrollIndicatorOffsetPercent * (maxScrollViewOffset - minScrollViewOffset) + minScrollViewOffset
 
         return scrollOffset
     }
 
     private func scrollIndicatorOffsetFromScrollOffset(_ offset: CGFloat) -> CGFloat {
-        let scrollOffsetPercent = offset / maxScrollViewOffset
+        let scrollOffsetPercent = (offset - minScrollViewOffset) / (maxScrollViewOffset - minScrollViewOffset)
         let scrollIndicatorOffset = scrollOffsetPercent * (maxScrollIndicatorOffset - minScrollIndicatorOffset) + minScrollIndicatorOffset
 
         return scrollIndicatorOffset
