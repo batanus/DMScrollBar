@@ -72,8 +72,7 @@ extension ViewController: DMScrollBarDelegate {
             let maxY: CGFloat = section == tableView.numberOfSections - 1 ? .greatestFiniteMagnitude : sectionRect.maxY
             return minY...maxY ~= offset
         }) else { return nil }
-        let sectionHeaderTitle = tableView(tableView, titleForHeaderInSection: section)
 
-        return sectionHeaderTitle
+        return tableView(tableView, titleForHeaderInSection: section)
     }
 }

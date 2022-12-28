@@ -22,6 +22,12 @@ public class DMScrollBar: UIView {
     private var scrollIndicatorOffsetOnGestureStart: CGFloat?
     private var wasHapticGeneratedOnLongPress = false
 
+    private var scrollViewLayoutGuide: UILayoutGuide? {
+        configuration.indicator.insetsFollowsSafeArea ?
+            scrollView?.safeAreaLayoutGuide :
+            scrollView?.frameLayoutGuide
+    }
+
     // MARK: - Initial setup
 
     public init(
@@ -48,14 +54,11 @@ public class DMScrollBar: UIView {
     }
 
     private func setupConstraints() {
-        guard let scrollView else { return }
+        guard let scrollView, let scrollViewLayoutGuide else { return }
         scrollView.addSubview(self)
-        let layoutGuide = configuration.indicator.insetsFollowsSafeArea ?
-            scrollView.safeAreaLayoutGuide :
-            scrollView.frameLayoutGuide
-        trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor).isActive = true
-        topAnchor.constraint(equalTo: layoutGuide.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: scrollViewLayoutGuide.trailingAnchor).isActive = true
+        topAnchor.constraint(equalTo: scrollViewLayoutGuide.topAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: scrollViewLayoutGuide.bottomAnchor).isActive = true
         widthAnchor.constraint(equalToConstant: configuration.indicator.size.width).isActive = true
     }
 
@@ -110,6 +113,11 @@ public class DMScrollBar: UIView {
         additionalInfoView.translatesAutoresizingMaskIntoConstraints = false
         additionalInfoView.backgroundColor = configuration.infoLabel.backgroundColor
         scrollIndicator.leadingAnchor.constraint(equalTo: additionalInfoView.trailingAnchor, constant: distanceToScrollIndicator).isActive = true
+        if let maximumWidth = configuration.infoLabel.maximumWidth {
+            additionalInfoView.widthAnchor.constraint(lessThanOrEqualToConstant: maximumWidth).isActive = true
+        } else if let scrollViewLayoutGuide {
+            additionalInfoView.leadingAnchor.constraint(equalTo: scrollViewLayoutGuide.leadingAnchor, constant: 8).isActive = true
+        }
         additionalInfoView.centerYAnchor.constraint(equalTo: scrollIndicator.centerYAnchor).isActive = true
         additionalInfoView.layer.maskedCorners = configuration.infoLabel.rounderCorners.corners.map(\.cornerMask).cornerMask
         additionalInfoView.layer.cornerRadius = cornerRadius(
@@ -408,13 +416,6 @@ public class DMScrollBar: UIView {
     }
 
     private func adjustedScrollIndicatorOffsetForOverscroll(_ offset: CGFloat) -> CGFloat {
-        guard let scrollView else { return offset }
-        let scrollBarFrame = CGRect(
-            x: frame.minX,
-            y: scrollView.frame.minY + (configuration.indicator.insetsFollowsSafeArea ? scrollView.safeAreaInsets.top : 0),
-            width: frame.width,
-            height: frame.height
-        )
         if offset < scrollIndicatorOffsetBounds.minY {
             let adjustedOffset = scrollIndicatorOffsetBounds.minY - offset
             return scrollIndicatorOffsetBounds.minY - abs(adjustedOffset) / 3

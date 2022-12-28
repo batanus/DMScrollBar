@@ -70,6 +70,7 @@ extension DMScrollBar {
             public let distanceToScrollIndicator: CGFloat
             public let backgroundColor: UIColor
             public let textInsets: UIEdgeInsets
+            public let maximumWidth: CGFloat?
             public let rounderCorners: RoundedCorners
 
             /// - Parameters:
@@ -78,6 +79,7 @@ extension DMScrollBar {
             ///   - distanceToScrollIndicator: Horizontal distance from the info label to the scroll indicator
             ///   - backgroundColor: Background color of the info label
             ///   - textInsets: Indicates text insets from the info label to its background
+            ///   - maximumWidth: Indicates maximum width of info label. If nil is passed - the info label will grow maximum to the leading side of the screen
             ///   - rounderCorners: Info label corenrs which should be rounded
             public init(
                 font: UIFont = UIFont.systemFont(ofSize: 13),
@@ -85,6 +87,7 @@ extension DMScrollBar {
                 distanceToScrollIndicator: CGFloat = 40,
                 backgroundColor: UIColor = UIColor.defaultScrollBarBackground,
                 textInsets: UIEdgeInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10),
+                maximumWidth: CGFloat? = nil,
                 rounderCorners: RoundedCorners = .allRounded
             ) {
                 self.font = font
@@ -92,6 +95,7 @@ extension DMScrollBar {
                 self.distanceToScrollIndicator = distanceToScrollIndicator
                 self.backgroundColor = backgroundColor
                 self.textInsets = textInsets
+                self.maximumWidth = maximumWidth
                 self.rounderCorners = rounderCorners
             }
 
