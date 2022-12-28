@@ -13,6 +13,8 @@ public class DMScrollBar: UIView {
     private let offsetLabel = UILabel()
 
     private var scrollIndicatorTopConstraint: NSLayoutConstraint?
+    private var scrollIndicatorTrailingConstraint: NSLayoutConstraint?
+    private var offsetLabelTrailingConstraint: NSLayoutConstraint?
     private var cancellables = Set<AnyCancellable>()
     private var hideTimer: Timer?
     private var panGestureRecognizer: UIPanGestureRecognizer?
@@ -76,7 +78,11 @@ public class DMScrollBar: UIView {
         scrollIndicator.backgroundColor = configuration.indicator.backgroundColor
         scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: configuration.indicator.insets.top)
         scrollIndicatorTopConstraint?.isActive = true
-        scrollIndicator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: configuration.indicator.insets.right).isActive = true
+        let scrollIndicatorInitialDistance = configuration.indicator.animation.animationType == .fadeAndSide && !configuration.isAlwaysVisible ?
+            configuration.indicator.size.width :
+            configuration.indicator.insets.right
+        scrollIndicatorTrailingConstraint = scrollIndicator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: scrollIndicatorInitialDistance)
+        scrollIndicatorTrailingConstraint?.isActive = true
         scrollIndicator.widthAnchor.constraint(equalToConstant: configuration.indicator.size.width).isActive = true
         scrollIndicator.heightAnchor.constraint(equalToConstant: configuration.indicator.size.height).isActive = true
         scrollIndicator.layer.maskedCorners = configuration.indicator.rounderCorners.corners.map(\.cornerMask).cornerMask
@@ -101,7 +107,6 @@ public class DMScrollBar: UIView {
         additionalInfoView.addSubview(offsetLabel)
 
         let textInsets = configuration.infoLabel.textInsets
-        let distanceToScrollIndicator = configuration.infoLabel.distanceToScrollIndicator
         offsetLabel.translatesAutoresizingMaskIntoConstraints = false
         offsetLabel.font = configuration.infoLabel.font
         offsetLabel.textColor = configuration.infoLabel.textColor
@@ -112,11 +117,13 @@ public class DMScrollBar: UIView {
 
         additionalInfoView.translatesAutoresizingMaskIntoConstraints = false
         additionalInfoView.backgroundColor = configuration.infoLabel.backgroundColor
-        scrollIndicator.leadingAnchor.constraint(equalTo: additionalInfoView.trailingAnchor, constant: distanceToScrollIndicator).isActive = true
+        let offsetLabelInitialDistance = configuration.infoLabel.animation.animationType == .fadeAndSide ? 0 : configuration.infoLabel.distanceToScrollIndicator
+        offsetLabelTrailingConstraint = scrollIndicator.leadingAnchor.constraint(equalTo: additionalInfoView.trailingAnchor, constant: offsetLabelInitialDistance)
+        offsetLabelTrailingConstraint?.isActive = true
         if let maximumWidth = configuration.infoLabel.maximumWidth {
             additionalInfoView.widthAnchor.constraint(lessThanOrEqualToConstant: maximumWidth).isActive = true
         } else if let scrollViewLayoutGuide {
-            additionalInfoView.leadingAnchor.constraint(equalTo: scrollViewLayoutGuide.leadingAnchor, constant: 8).isActive = true
+            additionalInfoView.leadingAnchor.constraint(greaterThanOrEqualTo: scrollViewLayoutGuide.leadingAnchor, constant: 8).isActive = true
         }
         additionalInfoView.centerYAnchor.constraint(equalTo: scrollIndicator.centerYAnchor).isActive = true
         additionalInfoView.layer.maskedCorners = configuration.infoLabel.rounderCorners.corners.map(\.cornerMask).cornerMask
@@ -452,32 +459,47 @@ public class DMScrollBar: UIView {
 
     private func animateScrollBarShow() {
         guard alpha == 0 else { return }
-        animate(duration: 0.1) { [weak self] in
-            self?.alpha = 1
+        animate(duration: configuration.indicator.animation.showDuration) { [weak self] in
+            guard let self else { return }
+            self.alpha = 1
+            guard self.configuration.indicator.animation.animationType == .fadeAndSide else { return }
+            self.scrollIndicatorTrailingConstraint?.constant = self.configuration.indicator.insets.right
+            self.layoutIfNeeded()
         }
     }
 
     private func animateScrollBarHide() {
-        animate(duration: 0.3) { [weak self] in
+        if alpha == 0 { return }
+        defer { animateAdditionalInfoViewHide() }
+        if configuration.isAlwaysVisible { return }
+        animate(duration: configuration.indicator.animation.hideDuration) { [weak self] in
             guard let self else { return }
-            if !self.configuration.isAlwaysVisible {
-                self.alpha = 0
-            }
-            self.additionalInfoView.alpha = 0
-        }
-    }
-
-    private func animateAdditionalInfoViewHide() {
-        if additionalInfoView.alpha == 0 { return }
-        animate(duration: 0.3) { [weak self] in
-            self?.additionalInfoView.alpha = 0
+            self.alpha = 0
+            guard self.configuration.indicator.animation.animationType == .fadeAndSide else { return }
+            self.scrollIndicatorTrailingConstraint?.constant = self.configuration.indicator.size.width
+            self.layoutIfNeeded()
         }
     }
 
     private func animateAdditionalInfoViewShow() {
         guard additionalInfoView.alpha == 0 else { return }
-        animate(duration: 0.1) { [weak self] in
-            self?.additionalInfoView.alpha = 1
+        animate(duration: configuration.infoLabel.animation.showDuration) { [weak self] in
+            guard let self else { return }
+            self.additionalInfoView.alpha = 1
+            guard self.configuration.infoLabel.animation.animationType == .fadeAndSide else { return }
+            self.offsetLabelTrailingConstraint?.constant = self.configuration.infoLabel.distanceToScrollIndicator
+            self.layoutIfNeeded()
+        }
+    }
+
+    private func animateAdditionalInfoViewHide() {
+        if additionalInfoView.alpha == 0 { return }
+        animate(duration: configuration.infoLabel.animation.hideDuration) { [weak self] in
+            guard let self else { return }
+            self.additionalInfoView.alpha = 0
+            guard self.configuration.infoLabel.animation.animationType == .fadeAndSide else { return }
+            self.offsetLabelTrailingConstraint?.constant = 0
+            self.layoutIfNeeded()
         }
     }
 
@@ -487,6 +509,7 @@ public class DMScrollBar: UIView {
             delay: 0,
             usingSpringWithDamping: 1,
             initialSpringVelocity: 0,
+            options: [.allowUserInteraction, .beginFromCurrentState, .curveEaseInOut],
             animations: animation
         )
     }
@@ -518,10 +541,10 @@ extension DMScrollBar: UIGestureRecognizerDelegate {
 private extension DMScrollBar.RoundedCorners.Corner {
     var cornerMask: CACornerMask {
         switch self {
-        case .leftTop: return .layerMinXMinYCorner
-        case .leftBottom: return .layerMinXMaxYCorner
-        case .rightTop: return .layerMaxXMinYCorner
-        case .rightBottom: return .layerMaxXMaxYCorner
+        case .topLeft: return .layerMinXMinYCorner
+        case .bottomLeft: return .layerMinXMaxYCorner
+        case .topRight: return .layerMaxXMinYCorner
+        case .bottomRight: return .layerMaxXMaxYCorner
         }
     }
 }
