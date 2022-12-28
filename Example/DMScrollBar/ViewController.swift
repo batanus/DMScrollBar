@@ -31,10 +31,10 @@ final class ViewController: UIViewController {
     }
 
     private func setupSections() {
-        sections = (0..<5).map { sectionNumber in
+        sections = (0..<20).map { sectionNumber in
             Section(
                 title: headerDateFormatter.string(from: Date(timeIntervalSinceNow: TimeInterval(86400 * sectionNumber))),
-                items: (0..<20).map { "Item #\($0)" }
+                items: (0..<10).map { "Item #\($0)" }
             )
         }
     }
