@@ -8,7 +8,8 @@
 ## Example
 iOS style | Default style | iOS & Default combined style  | Absolutely custom style
 :-: | :-: | :-: | :-:
-| <img height=400 src="https://user-images.githubusercontent.com/25244017/209874551-ca8918c2-7d32-4e7c-abb4-26ffe2542388.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209874594-83512261-0a06-4ac8-806d-5399196ffb6d.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209874657-4d64fa9e-d3a6-4b78-8fe8-782cfee660fb.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209874630-8abdfbbe-8317-4306-989b-5210b1ce1c9a.gif">
+| <img height=400 src="https://user-images.githubusercontent.com/25244017/209875253-22d51fff-5431-48df-ac07-3c1d5b9924b5.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209875287-e03c8660-4a34-47b1-ad9e-d8673dae04ec.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209875334-672a7b6a-5e05-4eb9-bad2-3aea2498e6dd.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209875373-4314a602-0405-4f53-a9b1-3b484180d218.gif">
+
 
 
 
