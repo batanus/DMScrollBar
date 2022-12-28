@@ -30,7 +30,7 @@ final class ViewController: UIViewController {
         let iosCombinedDefaultConfig = DMScrollBar.Configuration(
             indicator: .init(
                 normalState: .iosStyle(width: 3),
-                activeState: .init(backgroundColor: .green)
+                activeState: .default
             )
         )
         let customConfig = DMScrollBar.Configuration(
@@ -69,7 +69,7 @@ final class ViewController: UIViewController {
         )
         tableView.dataSource = self
         tableView.contentInset.top = 16
-        tableView.configureScrollBar(with: .default, delegate: self)
+        tableView.configureScrollBar(with: iosCombinedDefaultConfig, delegate: self)
     }
 
     private func setupSections() {

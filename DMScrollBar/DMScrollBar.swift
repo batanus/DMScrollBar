@@ -441,20 +441,12 @@ public class DMScrollBar: UIView {
 
     // MARK: - Calculations
 
-    private var currentIndicatorInsets: UIEdgeInsets {
-        isPanGestureInactive ? configuration.indicator.normalState.insets : configuration.indicator.activeState.insets
-    }
-
-    private var currentIndicatorSize: CGSize {
-        isPanGestureInactive ? configuration.indicator.normalState.size : configuration.indicator.activeState.size
-    }
-
     private var minScrollIndicatorOffset: CGFloat {
-        return currentIndicatorInsets.top
+        return configuration.indicator.normalState.insets.top
     }
 
     private var maxScrollIndicatorOffset: CGFloat {
-        return frame.height - scrollIndicator.frame.height - currentIndicatorInsets.bottom
+        return frame.height - configuration.indicator.normalState.size.height - configuration.indicator.normalState.insets.bottom
     }
 
     private var minScrollViewOffset: CGFloat {
@@ -558,7 +550,7 @@ public class DMScrollBar: UIView {
             guard let self else { return }
             self.alpha = 1
             guard self.configuration.indicator.animation.animationType == .fadeAndSide else { return }
-            self.scrollIndicatorTrailingConstraint?.constant = -self.currentIndicatorInsets.right
+            self.scrollIndicatorTrailingConstraint?.constant = -self.configuration.indicator.normalState.insets.right
             self.layoutIfNeeded()
         }
     }
@@ -571,7 +563,7 @@ public class DMScrollBar: UIView {
             guard let self else { return }
             self.alpha = 0
             guard self.configuration.indicator.animation.animationType == .fadeAndSide else { return }
-            self.scrollIndicatorTrailingConstraint?.constant = self.currentIndicatorSize.width
+            self.scrollIndicatorTrailingConstraint?.constant = self.configuration.indicator.normalState.size.width
             self.layoutIfNeeded()
         }
     }
