@@ -548,6 +548,7 @@ public class DMScrollBar: UIView {
             return scrollViewOffset > previousOffset ? .fromTop : .fromBottom
         }()
         offsetLabel.setup(text: offsetLabelText, direction: direction)
+        additionalInfoView.layoutIfNeeded()
         generateHapticFeedback(style: .light)
     }
 

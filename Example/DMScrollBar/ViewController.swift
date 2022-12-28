@@ -69,7 +69,7 @@ final class ViewController: UIViewController {
         )
         tableView.dataSource = self
         tableView.contentInset.top = 16
-        tableView.configureScrollBar(with: customConfig, delegate: self)
+        tableView.configureScrollBar(with: .default, delegate: self)
     }
 
     private func setupSections() {
