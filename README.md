@@ -8,8 +8,7 @@
 ## Example
 iOS style | Default style | iOS & Default combined style  | Absolutely custom style
 :-: | :-: | :-: | :-:
-| <video height=400 src="https://user-images.githubusercontent.com/25244017/209843209-8a5e214a-2791-4dd1-999e-3f731c254965.mp4"> | <video height=400 src="https://user-images.githubusercontent.com/25244017/209842947-659acb25-4f61-4f3e-aafa-53019bb215c0.mp4"> | <video height=400 src="https://user-images.githubusercontent.com/25244017/209842769-2982a770-5846-44df-b41a-fc85ecab54f6.mp4"> | <video height=400 src="https://user-images.githubusercontent.com/25244017/209842918-587eb70e-151f-4a48-8383-ca93e575b40e.mp4">
-
+| <img height=400 src="https://user-images.githubusercontent.com/25244017/209874551-ca8918c2-7d32-4e7c-abb4-26ffe2542388.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209874594-83512261-0a06-4ac8-806d-5399196ffb6d.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209874657-4d64fa9e-d3a6-4b78-8fe8-782cfee660fb.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209874630-8abdfbbe-8317-4306-989b-5210b1ce1c9a.gif">
 
 
 
