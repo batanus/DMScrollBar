@@ -6,19 +6,6 @@ struct Section {
     let items: [String]
 }
 
-extension DMScrollBar.Configuration {
-    static let iosStyle = DMScrollBar.Configuration(
-        indicator: .init(
-            size: .init(width: 3, height: 100),
-            backgroundColor: UIColor.label.withAlphaComponent(0.35),
-            insets: .init(top: 8, left: 0, bottom: 8, right: 2),
-            image: nil,
-            rounderCorners: .allRounded,
-            animation: .defaultTiming(with: .fade)
-        )
-    )
-}
-
 final class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
 
@@ -38,9 +25,51 @@ final class ViewController: UIViewController {
     }
 
     private func setupTableView() {
+        let defaultConfig = DMScrollBar.Configuration.default
+        let iosStyleConfig = DMScrollBar.Configuration.iosStyle
+        let iosCombinedDefaultConfig = DMScrollBar.Configuration(
+            indicator: .init(
+                normalState: .iosStyle(width: 3),
+                activeState: .default
+            )
+        )
+        let customConfig = DMScrollBar.Configuration(
+            isAlwaysVisible: false,
+            hideTimeInterval: 1.5,
+            indicator: DMScrollBar.Configuration.Indicator(
+                normalState: .init(
+                    size: CGSize(width: 35, height: 35),
+                    backgroundColor: UIColor.brown.withAlphaComponent(0.8),
+                    insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0),
+                    image: UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.white),
+                    imageSize: CGSize(width: 20, height: 20),
+                    roundedCorners: .roundedLeftCorners
+                ),
+                activeState: .init(
+                    size: CGSize(width: 50, height: 50),
+                    backgroundColor: UIColor.brown,
+                    insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
+                    image: UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
+                    imageSize: CGSize(width: 28, height: 28),
+                    roundedCorners: .allRounded
+                ),
+                insetsFollowsSafeArea: true,
+                animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
+            ),
+            infoLabel: DMScrollBar.Configuration.InfoLabel(
+                font: .systemFont(ofSize: 15),
+                textColor: .white,
+                distanceToScrollIndicator: 40,
+                backgroundColor: .brown,
+                textInsets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),
+                maximumWidth: 300,
+                roundedCorners: .init(radius: .rounded, corners: [.topLeft, .bottomRight]),
+                animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
+            )
+        )
         tableView.dataSource = self
         tableView.contentInset.top = 16
-        tableView.configureScrollBar(with: .iosStyle, delegate: self)
+        tableView.configureScrollBar(with: iosCombinedDefaultConfig, delegate: self)
     }
 
     private func setupSections() {

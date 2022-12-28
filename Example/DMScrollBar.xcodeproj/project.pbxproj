@@ -212,12 +212,10 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 2S883HFCN8;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 2S883HFCN8;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -480,7 +478,7 @@
 			baseConfigurationReference = 9A610708244535B7934933DB /* Pods-DMScrollBar_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2S883HFCN8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DMScrollBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -497,7 +495,7 @@
 			baseConfigurationReference = 4F2A9EFED781DB0DBB8C538A /* Pods-DMScrollBar_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2S883HFCN8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DMScrollBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -513,7 +511,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0C97CB26DB1322F37C1536C /* Pods-DMScrollBar_Tests.debug.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 2S883HFCN8;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -537,7 +535,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4C527C3BCA7CEAF93DD4F8C /* Pods-DMScrollBar_Tests.release.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 2S883HFCN8;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
