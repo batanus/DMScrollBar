@@ -6,8 +6,23 @@
 [![Platform](https://img.shields.io/cocoapods/p/DMScrollBar.svg?style=flat)](https://cocoapods.org/pods/DMScrollBar)
 
 ## Example
+iOS style | Default style | iOS & Default combined style  | Absolutely custom style
+:-: | :-: | :-: | :-:
+| <video height=400 src="https://user-images.githubusercontent.com/25244017/209843209-8a5e214a-2791-4dd1-999e-3f731c254965.mp4"> | <video height=400 src="https://user-images.githubusercontent.com/25244017/209842947-659acb25-4f61-4f3e-aafa-53019bb215c0.mp4"> | <video height=400 src="https://user-images.githubusercontent.com/25244017/209842769-2982a770-5846-44df-b41a-fc85ecab54f6.mp4"> | <video height=400 src="https://user-images.githubusercontent.com/25244017/209842918-587eb70e-151f-4a48-8383-ca93e575b40e.mp4">
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+
+
+## Description 
+
+DMScrollBar is best in class customizable ScrollBar for ScrollView. It has: 
+- Showing info label when user interaction with ScrollBar is started
+- Decelerating & Bounce mechanism 
+- Super customizable configuration
+- Different states for active / inactive states
+- Haptic feedback on interaction start / end and when info label changes on specified offset
+- Super Fancy animations
+
 
 ## Installation
 
@@ -25,7 +40,7 @@ pod install
 
 ## Usage
 
-On any ScrollView you want to add the ScrollBar with default configuration, just call:
+On any ScrollView you want to add the ScrollBar with default configuration, just call (see result on Gid #2):
 ```swift
 scrollView.configureScrollBar()
 ```
@@ -42,7 +57,7 @@ extension ViewController: DMScrollBarDelegate {
 ```
 
 
-If you want to have iOS style scroll bar, configure ScrollBar with `.iosStyle` config (_Next code will create config for the Scroll Bar for Gif #2_):
+If you want to have iOS style scroll bar, configure ScrollBar with `.iosStyle` config (_Next code will create config for the Scroll Bar for Gif #1_):
 ```swift
 scrollView.configureScrollBar(with: .iosStyle, delegate: self)
 ```
@@ -53,7 +68,7 @@ Any ScrollBar configuration can be easily combined with another one (_Next code 
 let iosCombinedDefaultConfig = DMScrollBar.Configuration(
     indicator: .init(
         normalState: .iosStyle(width: 3),
-        activeState: .init(backgroundColor: .green)
+        activeState: .default
     )
 )
 scrollView.configureScrollBar(with: iosCombinedDefaultConfig, delegate: self)
@@ -83,7 +98,7 @@ let customConfig = DMScrollBar.Configuration(
             roundedCorners: .allRounded
         ),
         insetsFollowsSafeArea: true,
-        animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fade)
+        animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
     ),
     infoLabel: DMScrollBar.Configuration.InfoLabel(
         font: .systemFont(ofSize: 15),
