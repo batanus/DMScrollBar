@@ -58,10 +58,11 @@ public class DMScrollBar: UIView {
     private func setupConstraints() {
         guard let scrollView, let scrollViewLayoutGuide else { return }
         scrollView.addSubview(self)
+        let minimumWidth: CGFloat = 20
         trailingAnchor.constraint(equalTo: scrollViewLayoutGuide.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: scrollViewLayoutGuide.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: scrollViewLayoutGuide.bottomAnchor).isActive = true
-        widthAnchor.constraint(equalToConstant: configuration.indicator.size.width).isActive = true
+        widthAnchor.constraint(equalToConstant: max(minimumWidth, configuration.indicator.size.width)).isActive = true
     }
 
     private func setupInitialAlpha() {
@@ -80,7 +81,7 @@ public class DMScrollBar: UIView {
         scrollIndicatorTopConstraint?.isActive = true
         let scrollIndicatorInitialDistance = configuration.indicator.animation.animationType == .fadeAndSide && !configuration.isAlwaysVisible ?
             configuration.indicator.size.width :
-            configuration.indicator.insets.right
+            -configuration.indicator.insets.right
         scrollIndicatorTrailingConstraint = scrollIndicator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: scrollIndicatorInitialDistance)
         scrollIndicatorTrailingConstraint?.isActive = true
         scrollIndicator.widthAnchor.constraint(equalToConstant: configuration.indicator.size.width).isActive = true
@@ -88,7 +89,7 @@ public class DMScrollBar: UIView {
         scrollIndicator.layer.maskedCorners = configuration.indicator.rounderCorners.corners.map(\.cornerMask).cornerMask
         scrollIndicator.layer.cornerRadius = cornerRadius(
             from: configuration.indicator.rounderCorners.radius,
-            viewHeight: configuration.indicator.size.height
+            viewSize: configuration.indicator.size
         )
         guard let image = configuration.indicator.image else { return }
         let imageView = UIImageView()
@@ -129,16 +130,19 @@ public class DMScrollBar: UIView {
         additionalInfoView.layer.maskedCorners = configuration.infoLabel.rounderCorners.corners.map(\.cornerMask).cornerMask
         additionalInfoView.layer.cornerRadius = cornerRadius(
             from: configuration.indicator.rounderCorners.radius,
-            viewHeight: configuration.infoLabel.font.lineHeight + textInsets.top + textInsets.bottom
+            viewSize: CGSize(
+                width: configuration.infoLabel.maximumWidth ?? CGFloat.greatestFiniteMagnitude,
+                height: configuration.infoLabel.font.lineHeight + textInsets.top + textInsets.bottom
+            )
         )
 
         additionalInfoView.alpha = 0
     }
 
-    private func cornerRadius(from radius: DMScrollBar.RoundedCorners.Radius, viewHeight: CGFloat) -> CGFloat {
+    private func cornerRadius(from radius: DMScrollBar.RoundedCorners.Radius, viewSize: CGSize) -> CGFloat {
         switch radius {
         case .notRounded: return 0
-        case .rounded: return viewHeight / 2
+        case .rounded: return min(viewSize.height, viewSize.width) / 2
         case .custom(let radius): return radius
         }
     }
@@ -198,13 +202,14 @@ public class DMScrollBar: UIView {
     private func addGestureRecognizers() {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         panGestureRecognizer.delegate = self
-        scrollIndicator.addGestureRecognizer(panGestureRecognizer)
+        addGestureRecognizer(panGestureRecognizer)
         self.panGestureRecognizer = panGestureRecognizer
         scrollView?.panGestureRecognizer.require(toFail: panGestureRecognizer)
 
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
         longPressGestureRecognizer.minimumPressDuration = 0.2
-        scrollIndicator.addGestureRecognizer(longPressGestureRecognizer)
+        longPressGestureRecognizer.delegate = self
+        addGestureRecognizer(longPressGestureRecognizer)
         self.longPressGestureRecognizer = longPressGestureRecognizer
     }
 
@@ -535,6 +540,10 @@ extension DMScrollBar: UIGestureRecognizerDelegate {
         shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
     ) -> Bool {
         return gestureRecognizer == panGestureRecognizer && otherGestureRecognizer == longPressGestureRecognizer
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return scrollIndicator.frame.minY...scrollIndicator.frame.maxY ~= touch.location(in: self).y
     }
 }
 

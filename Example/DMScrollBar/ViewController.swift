@@ -6,6 +6,19 @@ struct Section {
     let items: [String]
 }
 
+extension DMScrollBar.Configuration {
+    static let iosStyle = DMScrollBar.Configuration(
+        indicator: .init(
+            size: .init(width: 3, height: 100),
+            backgroundColor: UIColor.label.withAlphaComponent(0.35),
+            insets: .init(top: 8, left: 0, bottom: 8, right: 2),
+            image: nil,
+            rounderCorners: .allRounded,
+            animation: .defaultTiming(with: .fade)
+        )
+    )
+}
+
 final class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
 
@@ -27,7 +40,7 @@ final class ViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.contentInset.top = 16
-        tableView.configureScrollBar(with: .default, delegate: self)
+        tableView.configureScrollBar(with: .iosStyle, delegate: self)
     }
 
     private func setupSections() {

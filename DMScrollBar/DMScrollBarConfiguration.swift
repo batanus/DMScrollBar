@@ -67,7 +67,11 @@ extension DMScrollBar {
         }
 
         /// Default animation configuration
-        public static var `default` = Animation(showDuration: 0.2, hideDuration: 0.4, animationType: .fadeAndSide)
+        public static var `default` = defaultTiming(with: .fadeAndSide)
+
+        public static func defaultTiming(with animationType: AnimationType) -> Animation {
+            Animation(showDuration: 0.2, hideDuration: 0.4, animationType: animationType)
+        }
     }
 
     public struct Configuration: Equatable {
@@ -95,7 +99,7 @@ extension DMScrollBar {
             ///   - insets: Scroll bar indicator insets
             ///   - insetsFollowsSafeArea: Indicates if safe area insets should be taken into account
             ///   - image: Scroll bar image
-            ///   - imageSize: Scroll bar image size
+            ///   - imageSize: Scroll bar image size. If a nil image is passed - this parameter is ignored
             ///   - rounderCorners: Scroll bar indicator corners which should be rounded
             ///   - animation: Scroll bar indicator show / hide animation settings
             public init(
