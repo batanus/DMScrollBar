@@ -233,8 +233,11 @@ extension DMScrollBar {
         /// Indicates if the scrollbar should always be visible
         public let isAlwaysVisible: Bool
 
-        /// the scrollbar should be hidden after being inactive
+        /// Number of seconds after which the scrollbar should be hidden after being inactive
         public let hideTimeInterval: TimeInterval
+
+        /// Indicates if scroll view should decelerate when ending scroll bar interaction with velocity
+        public let shouldDecelerate: Bool
 
         /// configuration, which is placed on the right side
         public let indicator: Indicator
@@ -245,16 +248,19 @@ extension DMScrollBar {
         /// - Parameters:
         ///   - isAlwaysVisible: Indicates if the scrollbar should always be visible
         ///   - hideTimeInterval: Number of seconds after which the scrollbar should be hidden after being inactive
+        ///   - shouldDecelerate: Indicates if scroll view should decelerate when ending scroll bar interaction with velocity
         ///   - indicator: Scroll bar indicator configuration, which is placed on the right side
         ///   - infoLabel: Info label configuration, which appears during indicator scrolling
         public init(
             isAlwaysVisible: Bool = false,
             hideTimeInterval: TimeInterval = 2,
+            shouldDecelerate: Bool = true,
             indicator: Indicator = .default,
             infoLabel: InfoLabel = .default
         ) {
             self.isAlwaysVisible = isAlwaysVisible
             self.hideTimeInterval = hideTimeInterval
+            self.shouldDecelerate = shouldDecelerate
             self.indicator = indicator
             self.infoLabel = infoLabel
         }

@@ -379,6 +379,8 @@ public class DMScrollBar: UIView {
             }
         }()
 
+        guard configuration.shouldDecelerate else { return }
+
         decelerateAnimation = TimerAnimation(
             duration: duration,
             animations: { [weak self] _, time in

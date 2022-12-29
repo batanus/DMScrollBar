@@ -79,10 +79,11 @@ If you want to configure scroll bar, with custom config, create configuration an
 let customConfig = DMScrollBar.Configuration(
     isAlwaysVisible: false,
     hideTimeInterval: 1.5,
+    shouldDecelerate: true,
     indicator: DMScrollBar.Configuration.Indicator(
         normalState: .init(
             size: CGSize(width: 35, height: 35),
-            backgroundColor: UIColor.brown.withAlphaComponent(0.8),
+            backgroundColor: UIColor(red: 200 / 255, green: 150 / 255, blue: 80 / 255, alpha: 1),
             insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0),
             image: UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.white),
             imageSize: CGSize(width: 20, height: 20),
@@ -92,7 +93,7 @@ let customConfig = DMScrollBar.Configuration(
             size: CGSize(width: 50, height: 50),
             backgroundColor: UIColor.brown,
             insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
-            image: UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
+            image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
             imageSize: CGSize(width: 28, height: 28),
             roundedCorners: .allRounded
         ),

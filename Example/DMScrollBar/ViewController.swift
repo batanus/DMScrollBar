@@ -25,6 +25,7 @@ final class ViewController: UIViewController {
         ("Custom", DMScrollBar.Configuration(
             isAlwaysVisible: false,
             hideTimeInterval: 1.5,
+            shouldDecelerate: false,
             indicator: DMScrollBar.Configuration.Indicator(
                 normalState: .init(
                     size: CGSize(width: 35, height: 35),
@@ -43,7 +44,7 @@ final class ViewController: UIViewController {
                     roundedCorners: .allRounded
                 ),
                 insetsFollowsSafeArea: true,
-                animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fade)
+                animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
             ),
             infoLabel: DMScrollBar.Configuration.InfoLabel(
                 font: .systemFont(ofSize: 15),
