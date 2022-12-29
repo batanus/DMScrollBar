@@ -199,7 +199,7 @@ public class DMScrollBar: UIView {
         additionalInfoView.clipsToBounds = true
     }
 
-    private func cornerRadius(from radius: DMScrollBar.RoundedCorners.Radius, viewSize: CGSize) -> CGFloat {
+    private func cornerRadius(from radius: DMScrollBar.Configuration.RoundedCorners.Radius, viewSize: CGSize) -> CGFloat {
         switch radius {
         case .notRounded: return 0
         case .rounded: return min(viewSize.height, viewSize.width) / 2
@@ -630,7 +630,7 @@ extension DMScrollBar: UIGestureRecognizerDelegate {
     }
 }
 
-private extension DMScrollBar.RoundedCorners.Corner {
+private extension DMScrollBar.Configuration.RoundedCorners.Corner {
     var cornerMask: CACornerMask {
         switch self {
         case .topLeft: return .layerMinXMinYCorner
@@ -641,7 +641,7 @@ private extension DMScrollBar.RoundedCorners.Corner {
     }
 }
 
-private extension Sequence where Element == DMScrollBar.RoundedCorners.Corner {
+private extension Sequence where Element == DMScrollBar.Configuration.RoundedCorners.Corner {
     var cornerMask: CACornerMask {
         CACornerMask(map(\.cornerMask))
     }
