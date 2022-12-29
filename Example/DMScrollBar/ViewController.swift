@@ -7,8 +7,11 @@ struct Section {
 }
 
 final class ViewController: UIViewController {
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var statesStackView: UIStackView!
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var configsButton: UIButton!
+    @IBOutlet private var statesStackView: UIStackView!
+    @IBOutlet private var stackViewLeading: NSLayoutConstraint!
+    @IBOutlet private var configsButtonLeading: NSLayoutConstraint!
 
     private var exampleStates: [(name: String, config: DMScrollBar.Configuration)] = [
         ("Default", DMScrollBar.Configuration.default),
@@ -25,7 +28,7 @@ final class ViewController: UIViewController {
             indicator: DMScrollBar.Configuration.Indicator(
                 normalState: .init(
                     size: CGSize(width: 35, height: 35),
-                    backgroundColor: UIColor.brown.withAlphaComponent(0.8),
+                    backgroundColor: UIColor(red: 200 / 255, green: 150 / 255, blue: 80 / 255, alpha: 1),
                     insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0),
                     image: UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.white),
                     imageSize: CGSize(width: 20, height: 20),
@@ -35,7 +38,7 @@ final class ViewController: UIViewController {
                     size: CGSize(width: 50, height: 50),
                     backgroundColor: UIColor.brown,
                     insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
-                    image: UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
+                    image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
                     imageSize: CGSize(width: 28, height: 28),
                     roundedCorners: .allRounded
                 ),
@@ -67,6 +70,7 @@ final class ViewController: UIViewController {
         setupTableView()
         setupSections()
         setupStateButtons()
+        setupConfigsButton()
         setupScrollBarConfig(exampleStates[2].config)
         title = "DMScrollBar"
     }
@@ -77,17 +81,64 @@ final class ViewController: UIViewController {
     }
 
     private func setupStateButtons() {
-        exampleStates.forEach { title, config in
+        exampleStates.enumerated().forEach { offset, item in
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle(title, for: .normal)
-            button.setTitleColor(.label, for: .normal)
-            button.backgroundColor = .label.withAlphaComponent(0.15)
-            button.layer.cornerRadius = 10
+            button.setTitle(item.name, for: .normal)
+            button.setTitleColor(.systemBackground, for: .normal)
+            button.backgroundColor = UIColor(white: 0.7, alpha: 1)
+            button.layer.cornerRadius = 20
             button.contentEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 8)
-            button.addAction(UIAction { _ in self.setupScrollBarConfig(config) }, for: .touchUpInside)
+            button.addAction(UIAction { _ in self.handleStateButtonTap(item.config) }, for: .touchUpInside)
+            button.heightAnchor.constraint(equalToConstant: 40).isActive = true
             statesStackView.addArrangedSubview(button)
         }
+    }
+
+    private func handleStateButtonTap(_ config: DMScrollBar.Configuration) {
+        hideStateButtons()
+        setupScrollBarConfig(config)
+    }
+
+    private func showStateButtons() {
+        animate {
+            self.stackViewLeading.constant = 16
+            self.configsButtonLeading.constant = -50
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func hideStateButtons() {
+        animate {
+            self.stackViewLeading.constant = -100
+            self.configsButtonLeading.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func animate(duration: CGFloat = 0.3, animation: @escaping () -> Void) {
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            usingSpringWithDamping: 1,
+            initialSpringVelocity: 0,
+            options: [.allowUserInteraction, .beginFromCurrentState, .curveEaseInOut],
+            animations: animation
+        )
+    }
+
+    private func setupConfigsButton() {
+        configsButton.layer.cornerRadius = 25
+        configsButton.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        configsButton.setTitle("", for: .normal)
+        configsButton.backgroundColor = UIColor(white: 0.7, alpha: 1)
+        configsButton.addAction(UIAction { _ in self.showStateButtons() }, for: .touchUpInside)
+        configsButton.setImage(
+            UIImage(systemName: "arrow.forward.circle")?
+                .withRenderingMode(.alwaysOriginal)
+                .withTintColor(.systemBackground),
+            for: .normal
+        )
     }
 
     private func setupScrollBarConfig(_ config: DMScrollBar.Configuration) {

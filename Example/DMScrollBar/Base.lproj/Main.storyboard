@@ -51,18 +51,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-NN-yFW">
-                                <rect key="frame" x="16" y="758" width="361" height="44"/>
+                            <stackView verifyAmbiguity="ignoreSizes" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-NN-yFW">
+                                <rect key="frame" x="-100" y="600" width="100" height="202"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="SCX-c4-ioG"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="UyP-fQ-pVp"/>
+                                    <constraint firstAttribute="width" constant="100" id="sAV-tl-XgL"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="teH-ro-FUY"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZP-5o-9gA">
+                                <rect key="frame" x="0.0" y="752" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="OWv-tK-e3d"/>
+                                    <constraint firstAttribute="width" secondItem="UZP-5o-9gA" secondAttribute="height" id="fEk-9h-jJ8"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TUv-NN-yFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" priority="999" constant="16" id="6cM-TK-p0W"/>
-                            <constraint firstItem="TUv-NN-yFW" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="FLm-np-zET"/>
+                            <constraint firstItem="TUv-NN-yFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="-100" id="6cM-TK-p0W"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UZP-5o-9gA" secondAttribute="bottom" constant="16" id="I5u-6F-ikM"/>
+                            <constraint firstItem="UZP-5o-9gA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Kl7-m9-Zt3"/>
                             <constraint firstAttribute="bottom" secondItem="Lx4-oc-e8F" secondAttribute="bottom" id="T0U-44-Rfy"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TUv-NN-yFW" secondAttribute="bottom" constant="16" id="lwa-sv-FAR"/>
                             <constraint firstAttribute="trailing" secondItem="Lx4-oc-e8F" secondAttribute="trailing" id="n1R-wA-69e"/>
@@ -72,13 +82,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="62l-yE-zer"/>
                     <connections>
+                        <outlet property="configsButton" destination="UZP-5o-9gA" id="Qs8-q6-vzi"/>
+                        <outlet property="configsButtonLeading" destination="Kl7-m9-Zt3" id="LSO-Wf-vMx"/>
+                        <outlet property="stackViewLeading" destination="6cM-TK-p0W" id="3Jb-xd-l16"/>
                         <outlet property="statesStackView" destination="TUv-NN-yFW" id="Ubg-DB-ruY"/>
                         <outlet property="tableView" destination="Lx4-oc-e8F" id="P1y-02-DcG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="-332"/>
+            <point key="canvasLocation" x="-28.244274809160306" y="-332.3943661971831"/>
         </scene>
     </scenes>
     <resources>
