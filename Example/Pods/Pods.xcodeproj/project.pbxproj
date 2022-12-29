@@ -79,9 +79,9 @@
 		6B65DAC7BDF55FA07CB7B4B284296D8F /* ConvenienceFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConvenienceFunctions.swift; sourceTree = "<group>"; };
 		6B9928672096EA583CE038888437EFA5 /* GeometryUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeometryUtils.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		730845942AC084770C3720EDE817937F /* DMScrollBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = DMScrollBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		730845942AC084770C3720EDE817937F /* DMScrollBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = DMScrollBar.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		764829016692988788E964936ADA6F10 /* DMScrollBar */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DMScrollBar; path = DMScrollBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		76F4EAF2D9EFE1A2312918C8D6D8B30D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		76F4EAF2D9EFE1A2312918C8D6D8B30D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		808A7911B6D80855FB14542C7E5A76E6 /* Pods-DMScrollBar_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DMScrollBar_Tests.modulemap"; sourceTree = "<group>"; };
 		8336F7167B3B7D0FF83BF9D8568224A7 /* Pods-DMScrollBar_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DMScrollBar_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8993D53372443C0E105D470DFE1E72B6 /* DMScrollBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DMScrollBar.swift; path = DMScrollBar/DMScrollBar.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		8F7948BE77752A4226C8C281AEF1124E /* DMScrollBarConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DMScrollBarConfiguration.swift; path = DMScrollBar/DMScrollBarConfiguration.swift; sourceTree = "<group>"; };
 		95E2A26EF5603951B39F575278BEA1D3 /* DMScrollBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DMScrollBar.debug.xcconfig; sourceTree = "<group>"; };
 		961F8EB926AEF849AD4F15339AC4BE94 /* TimerAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TimerAnimation.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A08F93FC2497F5D5451075C7D1A784E6 /* Pods-DMScrollBar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DMScrollBar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A0FA0119165ACE01D4C12F068087E827 /* Publisher+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Publisher+Utils.swift"; sourceTree = "<group>"; };
 		A58AC987EB9BD7404485338ED81A6DE1 /* Pods-DMScrollBar_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DMScrollBar_Tests-Info.plist"; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		E96BD1E821FBB4949ADE55EC4F0444EA /* DMScrollBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DMScrollBar.modulemap; sourceTree = "<group>"; };
 		EED318A074140B6C2EF31891FC523ABE /* Pods-DMScrollBar_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DMScrollBar_Example-dummy.m"; sourceTree = "<group>"; };
 		F6E31E80F431108DE69AF238E881E7B3 /* DMScrollBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DMScrollBar-prefix.pch"; sourceTree = "<group>"; };
-		F70B39546BCB9272499EF8E72F8D3A86 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		F70B39546BCB9272499EF8E72F8D3A86 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -754,8 +754,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
