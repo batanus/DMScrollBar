@@ -1,7 +1,7 @@
 {
   "name": "DMScrollBar",
   "version": "1.0.0",
-  "summary": "A short description of DMScrollBar.",
+  "summary": "Customizable Scroll Bar for Scroll view.",
   "description": "Customizable Scroll Bar for Scroll View with additional info label appearing during the scroll.",
   "homepage": "https://github.com/batanus/DMScrollBar",
   "license": {
@@ -18,9 +18,9 @@
   "swift_versions": [
     "5.7"
   ],
+  "source_files": "DMScrollBar/**/*",
   "platforms": {
     "ios": "14.0"
   },
-  "source_files": "DMScrollBar/**/*",
   "swift_version": "5.7"
 }
