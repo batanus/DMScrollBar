@@ -6,10 +6,9 @@
 [![Platform](https://img.shields.io/cocoapods/p/DMScrollBar.svg?style=flat)](https://cocoapods.org/pods/DMScrollBar)
 
 ## Example
-iOS style | Default style | iOS & Default combined style  | Absolutely custom style
-:-: | :-: | :-: | :-:
-| <img height=400 src="https://user-images.githubusercontent.com/25244017/209875253-22d51fff-5431-48df-ac07-3c1d5b9924b5.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209875287-e03c8660-4a34-47b1-ad9e-d8673dae04ec.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209875334-672a7b6a-5e05-4eb9-bad2-3aea2498e6dd.gif"> | <img height=400 src="https://user-images.githubusercontent.com/25244017/209875373-4314a602-0405-4f53-a9b1-3b484180d218.gif">
-
+iOS style | Default style | iOS & Default combined style  | Absolutely custom style | Easy to change
+:-: | :-: | :-: | :-: | :-:
+| <img width="170" src="https://user-images.githubusercontent.com/25244017/209937427-7274d753-c4f1-45f8-93be-659b7d3b4434.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937470-d76a558c-6350-4d96-a142-13a6ef32e0f8.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937479-e7acbbd1-fba1-4fa8-a34f-9bb4b3ee790e.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937494-f61232a5-319a-4f88-abaf-b9340105746a.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937517-be2e6f54-53f9-447d-ad38-4fab39624551.gif">
 
 
 
