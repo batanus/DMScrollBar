@@ -8,32 +8,18 @@ struct Section {
 
 final class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var statesStackView: UIStackView!
 
-    private var sections = [Section]()
-    private let headerDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        return dateFormatter
-    }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupTableView()
-        setupSections()
-        title = "DMScrollBar"
-    }
-
-    private func setupTableView() {
-        let defaultConfig = DMScrollBar.Configuration.default
-        let iosStyleConfig = DMScrollBar.Configuration.iosStyle
-        let iosCombinedDefaultConfig = DMScrollBar.Configuration(
+    private var exampleStates: [(name: String, config: DMScrollBar.Configuration)] = [
+        ("Default", DMScrollBar.Configuration.default),
+        ("iOS", DMScrollBar.Configuration.iosStyle),
+        ("Combined", DMScrollBar.Configuration(
             indicator: .init(
                 normalState: .iosStyle(width: 3),
                 activeState: .default
             )
-        )
-        let customConfig = DMScrollBar.Configuration(
+        )),
+        ("Custom", DMScrollBar.Configuration(
             isAlwaysVisible: false,
             hideTimeInterval: 1.5,
             indicator: DMScrollBar.Configuration.Indicator(
@@ -66,10 +52,46 @@ final class ViewController: UIViewController {
                 roundedCorners: .init(radius: .rounded, corners: [.topLeft, .bottomRight]),
                 animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
             )
-        )
+        ))
+    ]
+    private var sections = [Section]()
+    private let headerDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupTableView()
+        setupSections()
+        setupStateButtons()
+        setupScrollBarConfig(exampleStates[2].config)
+        title = "DMScrollBar"
+    }
+
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.contentInset.top = 16
-        tableView.configureScrollBar(with: iosCombinedDefaultConfig, delegate: self)
+    }
+
+    private func setupStateButtons() {
+        exampleStates.forEach { title, config in
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitle(title, for: .normal)
+            button.setTitleColor(.label, for: .normal)
+            button.backgroundColor = .label.withAlphaComponent(0.15)
+            button.layer.cornerRadius = 10
+            button.contentEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 8)
+            button.addAction(UIAction { _ in self.setupScrollBarConfig(config) }, for: .touchUpInside)
+            statesStackView.addArrangedSubview(button)
+        }
+    }
+
+    private func setupScrollBarConfig(_ config: DMScrollBar.Configuration) {
+        tableView.configureScrollBar(with: config, delegate: self)
     }
 
     private func setupSections() {

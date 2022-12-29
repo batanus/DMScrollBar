@@ -15,6 +15,7 @@ public extension UIScrollView {
     }
 
     func configureScrollBar(with configuration: DMScrollBar.Configuration = .default, delegate: DMScrollBarDelegate? = nil) {
+        scrollBar?.removeFromSuperview()
         let scrollBar = DMScrollBar(scrollView: self, delegate: delegate, configuration: configuration)
         self.scrollBar = scrollBar
     }

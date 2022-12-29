@@ -51,10 +51,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-NN-yFW">
+                                <rect key="frame" x="16" y="758" width="361" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SCX-c4-ioG"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="UyP-fQ-pVp"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="TUv-NN-yFW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" priority="999" constant="16" id="6cM-TK-p0W"/>
+                            <constraint firstItem="TUv-NN-yFW" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="FLm-np-zET"/>
                             <constraint firstAttribute="bottom" secondItem="Lx4-oc-e8F" secondAttribute="bottom" id="T0U-44-Rfy"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TUv-NN-yFW" secondAttribute="bottom" constant="16" id="lwa-sv-FAR"/>
                             <constraint firstAttribute="trailing" secondItem="Lx4-oc-e8F" secondAttribute="trailing" id="n1R-wA-69e"/>
                             <constraint firstItem="Lx4-oc-e8F" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="xtD-8j-pzT"/>
                             <constraint firstItem="Lx4-oc-e8F" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="yD3-Ty-h4q"/>
@@ -62,12 +72,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="62l-yE-zer"/>
                     <connections>
+                        <outlet property="statesStackView" destination="TUv-NN-yFW" id="Ubg-DB-ruY"/>
                         <outlet property="tableView" destination="Lx4-oc-e8F" id="P1y-02-DcG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-28" y="-349"/>
+            <point key="canvasLocation" x="-28" y="-332"/>
         </scene>
     </scenes>
     <resources>
