@@ -108,7 +108,11 @@ public class DMScrollBar: UIView {
             value: stateConfig.size.height
         )
         if scrollIndicatorTopConstraint == nil {
-            scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: stateConfig.insets.top)
+            let topOffset = scrollIndicatorOffsetFromScrollOffset(
+                scrollView?.contentOffset.y ?? 0,
+                shouldAdjustOverscrollOffset: true
+            )
+            scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: topOffset)
             scrollIndicatorTopConstraint?.isActive = true
         }
         scrollIndicator.layer.maskedCorners = stateConfig.roundedCorners.corners.cornerMask
@@ -240,7 +244,7 @@ public class DMScrollBar: UIView {
         animateScrollBarShow()
         scrollIndicatorTopConstraint?.constant = scrollIndicatorOffsetFromScrollOffset(
             newOffset.y,
-            shouldAdjust: panGestureRecognizer?.state == .possible && decelerateAnimation == nil
+            shouldAdjustOverscrollOffset: panGestureRecognizer?.state == .possible && decelerateAnimation == nil
         )
         startHideTimerIfNeeded()
         /// Next code is needed to keep additional info label title up-to-date during scroll view decelerate
@@ -489,11 +493,13 @@ public class DMScrollBar: UIView {
         return scrollOffset
     }
 
-    private func scrollIndicatorOffsetFromScrollOffset(_ scrollOffset: CGFloat, shouldAdjust: Bool) -> CGFloat {
+    private func scrollIndicatorOffsetFromScrollOffset(_ scrollOffset: CGFloat, shouldAdjustOverscrollOffset: Bool) -> CGFloat {
         let scrollOffsetPercent = (scrollOffset - minScrollViewOffset) / (maxScrollViewOffset - minScrollViewOffset)
         let scrollIndicatorOffset = scrollOffsetPercent * (maxScrollIndicatorOffset - minScrollIndicatorOffset) + minScrollIndicatorOffset
 
-        return shouldAdjust ? adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset) : scrollIndicatorOffset
+        return shouldAdjustOverscrollOffset ?
+            adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset) :
+            scrollIndicatorOffset
     }
 
     private func adjustedScrollIndicatorOffsetForOverscroll(_ offset: CGFloat) -> CGFloat {
