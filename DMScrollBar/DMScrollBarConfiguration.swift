@@ -42,7 +42,7 @@ extension DMScrollBar {
         public static let iosStyle = Configuration(
             indicator: .init(
                 normalState: .iosStyle(width: 3),
-                activeState: .iosStyle(width: 8),
+                activeState: .custom(config: .iosStyle(width: 8)),
                 animation: .defaultTiming(with: .fade)
             )
         )
@@ -189,11 +189,20 @@ extension DMScrollBar.Configuration {
             }
         }
 
+        public enum ActiveStateConfig: Equatable {
+            /// Use the same configuration as for normal state
+            case unchanged
+            /// Use the same configuration as for normal state but scaled with specified factor. F. e. factor = 1 will not scale indicator size, factor = 2 will scale indicator size by 2 times. If in normal state indicator size is 30x30, active state with scale factor = 2 will have size 60x60
+            case scaled(factor: CGFloat)
+            /// Use custom configuration for active state
+            case custom(config: StateConfig)
+        }
+
         /// Configuration for indicator state while the user is not interacting with it
         public let normalState: StateConfig
 
         /// Configuration for indicator state while the user interacting with it
-        public let activeState: StateConfig
+        public let activeState: ActiveStateConfig
 
         /// Indicates if safe area insets should be taken into account
         public let insetsFollowsSafeArea: Bool
@@ -208,7 +217,7 @@ extension DMScrollBar.Configuration {
         ///   - animation: Scroll bar indicator show / hide animation settings
         public init(
             normalState: StateConfig = .default,
-            activeState: StateConfig = .default,
+            activeState: ActiveStateConfig = .unchanged,
             insetsFollowsSafeArea: Bool = true,
             animation: Animation = .default
         ) {

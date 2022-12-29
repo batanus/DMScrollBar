@@ -339,7 +339,7 @@ public class DMScrollBar: UIView {
         updateAdditionalInfoViewState(forScrollOffset: scrollOffset, previousOffset: nil)
         invalidateHideTimer()
         generateHapticFeedback()
-        animateIndicatorStateChange(to: configuration.indicator.activeState)
+        animateIndicatorStateChange(to: configuration.indicator.activeStateConfig)
     }
 
     private func gestureInteractionEnded() {
@@ -644,5 +644,28 @@ private extension DMScrollBar.Configuration.RoundedCorners.Corner {
 private extension Sequence where Element == DMScrollBar.Configuration.RoundedCorners.Corner {
     var cornerMask: CACornerMask {
         CACornerMask(map(\.cornerMask))
+    }
+}
+
+private extension DMScrollBar.Configuration.Indicator {
+    var activeStateConfig: DMScrollBar.Configuration.Indicator.StateConfig {
+        switch activeState {
+        case .unchanged: return normalState
+        case .scaled(let factor): return normalState.applying(scaleFactor: factor)
+        case .custom(let config): return config
+        }
+    }
+}
+
+private extension DMScrollBar.Configuration.Indicator.StateConfig {
+    func applying(scaleFactor: CGFloat) -> DMScrollBar.Configuration.Indicator.StateConfig {
+        .init(
+            size: CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor),
+            backgroundColor: backgroundColor,
+            insets: insets,
+            image: image,
+            imageSize: CGSize(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor),
+            roundedCorners: roundedCorners
+        )
     }
 }

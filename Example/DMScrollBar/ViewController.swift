@@ -19,7 +19,7 @@ final class ViewController: UIViewController {
         ("Combined", DMScrollBar.Configuration(
             indicator: .init(
                 normalState: .iosStyle(width: 3),
-                activeState: .default
+                activeState: .custom(config: .default)
             )
         )),
         ("Custom", DMScrollBar.Configuration(
@@ -35,14 +35,14 @@ final class ViewController: UIViewController {
                     imageSize: CGSize(width: 20, height: 20),
                     roundedCorners: .roundedLeftCorners
                 ),
-                activeState: .init(
+                activeState: .custom(config: .init(
                     size: CGSize(width: 50, height: 50),
                     backgroundColor: UIColor.brown,
                     insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
                     image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
                     imageSize: CGSize(width: 28, height: 28),
                     roundedCorners: .allRounded
-                ),
+                )),
                 insetsFollowsSafeArea: true,
                 animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
             ),
@@ -72,7 +72,7 @@ final class ViewController: UIViewController {
         setupSections()
         setupStateButtons()
         setupConfigsButton()
-        setupScrollBarConfig(exampleStates[2].config)
+        setupScrollBarConfig(exampleStates[0].config)
         title = "DMScrollBar"
     }
 
