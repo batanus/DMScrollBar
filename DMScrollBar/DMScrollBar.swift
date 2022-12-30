@@ -264,13 +264,17 @@ public class DMScrollBar: UIView {
         panGestureRecognizer.delegate = self
         addGestureRecognizer(panGestureRecognizer)
         self.panGestureRecognizer = panGestureRecognizer
-        scrollView?.panGestureRecognizer.require(toFail: panGestureRecognizer)
 
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
         longPressGestureRecognizer.minimumPressDuration = 0.2
         longPressGestureRecognizer.delegate = self
         addGestureRecognizer(longPressGestureRecognizer)
         self.longPressGestureRecognizer = longPressGestureRecognizer
+
+        scrollView?.gestureRecognizers?.forEach {
+            $0.require(toFail: panGestureRecognizer)
+            $0.require(toFail: longPressGestureRecognizer)
+        }
     }
 
     @objc private func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
