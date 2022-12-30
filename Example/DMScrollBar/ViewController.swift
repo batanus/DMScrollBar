@@ -182,13 +182,6 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: DMScrollBarDelegate {
     /// In this example, this method returns the section header title for the top visible section
     func indicatorTitle(forOffset offset: CGFloat) -> String? {
-        guard let section = (0..<tableView.numberOfSections).first(where: { section in
-            let sectionRect = tableView.rect(forSection: section)
-            let minY: CGFloat = section == 0 ? -.greatestFiniteMagnitude : sectionRect.minY
-            let maxY: CGFloat = section == tableView.numberOfSections - 1 ? .greatestFiniteMagnitude : sectionRect.maxY
-            return minY...maxY ~= offset
-        }) else { return nil }
-
-        return tableView(tableView, titleForHeaderInSection: section)
+        headerTitle(in: tableView, forOffset: offset)
     }
 }
