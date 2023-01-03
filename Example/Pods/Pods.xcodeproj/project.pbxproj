@@ -29,6 +29,7 @@
 		ABB4F1F163AD59FF5DF185AF87763B24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		AC15D0EA17A2C67FC4A65297E9FF3AD1 /* TimingParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446897C306D955794151A076BC3E2EFE /* TimingParameters.swift */; };
 		B8F83EBEEB2F8F5417A47B8A84C9D134 /* Comparable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8485EA5857330F13900EFACE2624C0 /* Comparable+Utils.swift */; };
+		BF01544829641E0400D7E2F6 /* RubberBand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01544729641E0400D7E2F6 /* RubberBand.swift */; };
 		C9946632F18E6A70EEC5226929B72A78 /* TimerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961F8EB926AEF849AD4F15339AC4BE94 /* TimerAnimation.swift */; };
 		CCA05632420E21C200E1F43FF8BDFE45 /* DMScrollBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8993D53372443C0E105D470DFE1E72B6 /* DMScrollBar.swift */; };
 		CCEB43051EFC88AE2E51BD11EF630AC3 /* SpringTimingParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B843ECA438785DC07D6F1BD864ED6A81 /* SpringTimingParameters.swift */; };
@@ -98,6 +99,7 @@
 		B843ECA438785DC07D6F1BD864ED6A81 /* SpringTimingParameters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpringTimingParameters.swift; sourceTree = "<group>"; };
 		B8E1DEC44D45FEEFC1D3B8C219A436B5 /* DecelerationTimingParameters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DecelerationTimingParameters.swift; sourceTree = "<group>"; };
 		B948DB9BA0CAC89F74EB485B8F5F7C27 /* Pods-DMScrollBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DMScrollBar_Example.modulemap"; sourceTree = "<group>"; };
+		BF01544729641E0400D7E2F6 /* RubberBand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubberBand.swift; sourceTree = "<group>"; };
 		C26E2B8D93A235C8EF3D617650A31B7E /* UIGestureRecognizer+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Utils.swift"; sourceTree = "<group>"; };
 		C37E32D0FB72DCB8D0B1A48C3C6A9950 /* DMScrollBar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DMScrollBar-Info.plist"; sourceTree = "<group>"; };
 		CC34FFC648198F041E26DD5E725C8184 /* CASpringAnimation+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CASpringAnimation+Utils.swift"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				B8E1DEC44D45FEEFC1D3B8C219A436B5 /* DecelerationTimingParameters.swift */,
 				6B9928672096EA583CE038888437EFA5 /* GeometryUtils.swift */,
+				BF01544729641E0400D7E2F6 /* RubberBand.swift */,
 				B843ECA438785DC07D6F1BD864ED6A81 /* SpringTimingParameters.swift */,
 				961F8EB926AEF849AD4F15339AC4BE94 /* TimerAnimation.swift */,
 				446897C306D955794151A076BC3E2EFE /* TimingParameters.swift */,
@@ -456,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FD7EA0183ADC2B3FE9A1808CD108845 /* CASpringAnimation+Utils.swift in Sources */,
+				BF01544829641E0400D7E2F6 /* RubberBand.swift in Sources */,
 				43B0669DA558D920430EAACCB47F316E /* CGPoint+Utils.swift in Sources */,
 				B8F83EBEEB2F8F5417A47B8A84C9D134 /* Comparable+Utils.swift in Sources */,
 				29630AD26C4D5836E145366166396B44 /* ConvenienceFunctions.swift in Sources */,

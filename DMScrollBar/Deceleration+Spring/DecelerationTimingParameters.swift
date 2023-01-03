@@ -26,9 +26,7 @@ extension DecelerationTimingParameters {
     }
 
     func duration(to value: CGPoint) -> TimeInterval? {
-        guard value.distance(toSegment: (initialValue, destination)) < threshold else {
-            return nil
-        }
+        guard value.distance(toSegment: (initialValue, destination)) < threshold else { return nil }
         let dCoeff = 1000 * log(decelerationRate)
         return TimeInterval(log(1.0 + dCoeff * (value - initialValue).length / initialVelocity.length) / dCoeff)
     }

@@ -110,7 +110,7 @@ public class DMScrollBar: UIView {
         if scrollIndicatorTopConstraint == nil {
             let topOffset = scrollIndicatorOffsetFromScrollOffset(
                 scrollView?.contentOffset.y ?? 0,
-                shouldAdjustOverscrollOffset: true
+                shouldAdjustOverscrollOffset: false
             )
             scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: topOffset)
             scrollIndicatorTopConstraint?.isActive = true
@@ -497,7 +497,7 @@ public class DMScrollBar: UIView {
     }
 
     private func scrollOffsetFromScrollIndicatorOffset(_ scrollIndicatorOffset: CGFloat) -> CGFloat {
-        let adjustedScrollIndicatorOffset = adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset)
+        let adjustedScrollIndicatorOffset = adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset, isPanGestureSource: true)
         let scrollIndicatorOffsetPercent = (adjustedScrollIndicatorOffset - minScrollIndicatorOffset) / (maxScrollIndicatorOffset - minScrollIndicatorOffset)
         let scrollOffset = scrollIndicatorOffsetPercent * (maxScrollViewOffset - minScrollViewOffset) + minScrollViewOffset
 
@@ -509,20 +509,23 @@ public class DMScrollBar: UIView {
         let scrollIndicatorOffset = scrollOffsetPercent * (maxScrollIndicatorOffset - minScrollIndicatorOffset) + minScrollIndicatorOffset
 
         return shouldAdjustOverscrollOffset ?
-            adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset) :
+            adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset, isPanGestureSource: false) :
             scrollIndicatorOffset
     }
 
-    private func adjustedScrollIndicatorOffsetForOverscroll(_ offset: CGFloat) -> CGFloat {
-        if offset < scrollIndicatorOffsetBounds.minY {
-            let adjustedOffset = scrollIndicatorOffsetBounds.minY - offset
-            return scrollIndicatorOffsetBounds.minY - abs(adjustedOffset) / 3
-        } else if offset > scrollIndicatorOffsetBounds.maxY {
-            let adjustedOffset = scrollIndicatorOffsetBounds.maxY - offset
-            return scrollIndicatorOffsetBounds.maxY + abs(adjustedOffset) / 3
-        }
+    private func adjustedScrollIndicatorOffsetForOverscroll(_ offset: CGFloat, isPanGestureSource: Bool) -> CGFloat {
+        let indicatorToScrollRatio = scrollIndicatorOffsetBounds.height / scrollViewOffsetBounds.height
+        let coefficient = isPanGestureSource ?
+            RubberBand.defaultCoefficient * indicatorToScrollRatio :
+            RubberBand.defaultCoefficient / indicatorToScrollRatio
+        let adjustedCoefficient = interval(0.1, coefficient, RubberBand.defaultCoefficient)
+        print(adjustedCoefficient)
 
-        return offset
+        return RubberBand(
+            coeff: adjustedCoefficient,
+            dims: frame.size,
+            bounds: scrollIndicatorOffsetBounds
+        ).clamp(CGPoint(x: 0, y: offset)).y
     }
 
     // MARK: - Private methods
