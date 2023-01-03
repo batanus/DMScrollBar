@@ -16,7 +16,7 @@ iOS style | Default style | iOS & Default combined style  | Absolutely custom st
 
 DMScrollBar is best in class customizable ScrollBar for ScrollView. It has: 
 - Showing info label when user interaction with ScrollBar is started
-- Decelerating & Bounce mechanism 
+- Decelerating, Bounce & Rubber band mechanisms
 - Super customizable configuration
 - Different states for active / inactive states
 - Haptic feedback on interaction start / end and when info label changes on specified offset
