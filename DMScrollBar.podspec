@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'DMScrollBar'
-  s.version               = '1.0.2'
+  s.version               = '1.0.3'
   s.summary               = 'Customizable Scroll Bar for Scroll view.'
   s.description           = "Customizable Scroll Bar for Scroll View with additional info label appearing during the scroll."
   s.homepage              = 'https://github.com/batanus/DMScrollBar'
