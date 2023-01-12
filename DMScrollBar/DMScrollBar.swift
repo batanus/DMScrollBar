@@ -519,7 +519,6 @@ public class DMScrollBar: UIView {
             RubberBand.defaultCoefficient * indicatorToScrollRatio :
             RubberBand.defaultCoefficient / indicatorToScrollRatio
         let adjustedCoefficient = interval(0.1, coefficient, RubberBand.defaultCoefficient)
-        print(adjustedCoefficient)
 
         return RubberBand(
             coeff: adjustedCoefficient,
