@@ -1,5 +1,5 @@
 PODS:
-  - DMScrollBar (1.0.3)
+  - DMScrollBar (1.0.4)
 
 DEPENDENCIES:
   - DMScrollBar (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DMScrollBar: 469a314e7e9ff40028372c64be605cb3b6c9b8c4
+  DMScrollBar: 29380234371048c10043a780772b15f236b39e7b
 
 PODFILE CHECKSUM: 507fb18072a74f73e82cc05d6cc741591f4798ee
 
