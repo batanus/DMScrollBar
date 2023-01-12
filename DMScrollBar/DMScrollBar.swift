@@ -240,7 +240,7 @@ public class DMScrollBar: UIView {
     }
 
     private func handleScrollViewOffsetChange(previousOffset: CGPoint?, newOffset: CGPoint) {
-        guard let scrollView, scrollView.frame.height < scrollView.contentSize.height else { return }
+        guard maxScrollViewOffset > 30 else { return }
         animateScrollBarShow()
         scrollIndicatorTopConstraint?.constant = scrollIndicatorOffsetFromScrollOffset(
             newOffset.y,
@@ -314,7 +314,9 @@ public class DMScrollBar: UIView {
         gestureInteractionEnded()
         let velocity = recognizer.velocity(in: scrollView).withZeroX
         let isSignificantVelocity = abs(velocity.y) > 100
-        let isOffsetInScrollBounds = minScrollViewOffset...maxScrollViewOffset ~= scrollView.contentOffset.y
+        let isOffsetInScrollBounds = maxScrollViewOffset > minScrollViewOffset ?
+            minScrollViewOffset...maxScrollViewOffset ~= scrollView.contentOffset.y :
+            false
         switch (isSignificantVelocity, isOffsetInScrollBounds) {
         case (true, true): startDeceleration(withVelocity: velocity)
         case (true, false): bounceScrollViewToBoundsIfNeeded(velocity: velocity)
