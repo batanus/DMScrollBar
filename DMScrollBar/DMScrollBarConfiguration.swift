@@ -12,21 +12,21 @@ extension DMScrollBar {
         /// configuration, which is placed on the right side
         public let indicator: Indicator
         
-        /// Info label configuration, which appears during indicator scrolling
-        public let infoLabel: InfoLabel
+        /// Info label configuration, which appears during indicator scrolling. If nil - the info label will be hidden
+        public let infoLabel: InfoLabel?
 
         /// - Parameters:
         ///   - isAlwaysVisible: Indicates if the scrollbar should always be visible
         ///   - hideTimeInterval: Number of seconds after which the scrollbar should be hidden after being inactive
         ///   - shouldDecelerate: Indicates if scroll view should decelerate when ending scroll bar interaction with velocity
         ///   - indicator: Scroll bar indicator configuration, which is placed on the right side
-        ///   - infoLabel: Info label configuration, which appears during indicator scrolling
+        ///   - infoLabel: Info label configuration, which appears during indicator scrolling. If passing nil - the info label will be hidden
         public init(
             isAlwaysVisible: Bool = false,
             hideTimeInterval: TimeInterval = 2,
             shouldDecelerate: Bool = true,
             indicator: Indicator = .default,
-            infoLabel: InfoLabel = .default
+            infoLabel: InfoLabel? = .default
         ) {
             self.isAlwaysVisible = isAlwaysVisible
             self.hideTimeInterval = hideTimeInterval
