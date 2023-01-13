@@ -2,7 +2,7 @@ import UIKit
 import DMScrollBar
 
 struct Section {
-    let title: String
+    let date: Date
     let items: [String]
 }
 
@@ -22,6 +22,19 @@ final class ViewController: UIViewController {
                 activeState: .custom(config: .default)
             )
         )),
+        ("Right text", DMScrollBar.Configuration(
+            indicator: .init(
+                activeState: .custom(
+                    config: .init(),
+                    textConfig: .init(
+                        insets: .init(top: 0, left: 8, bottom: 0, right: 96),
+                        font: .systemFont(ofSize: 15),
+                        color: .systemBackground
+                    )
+                )
+            ),
+            infoLabel: nil
+        )),
         ("Custom", DMScrollBar.Configuration(
             isAlwaysVisible: false,
             hideTimeInterval: 1.5,
@@ -35,14 +48,18 @@ final class ViewController: UIViewController {
                     imageSize: CGSize(width: 20, height: 20),
                     roundedCorners: .roundedLeftCorners
                 ),
-                activeState: .custom(config: .init(
-                    size: CGSize(width: 50, height: 50),
-                    backgroundColor: UIColor.brown,
-                    insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
-                    image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
-                    imageSize: CGSize(width: 28, height: 28),
-                    roundedCorners: .allRounded
-                )),
+                activeState: .custom(
+                    config: .init(
+                        size: CGSize(width: 50, height: 50),
+                        backgroundColor: UIColor.brown,
+                        insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
+                        image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
+                        imageSize: CGSize(width: 28, height: 28),
+                        roundedCorners: .allRounded
+                    ),
+                    textConfig: nil
+                ),
+                stateChangeAnimationDuration: 0.5,
                 insetsFollowsSafeArea: true,
                 animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
             ),
@@ -64,6 +81,11 @@ final class ViewController: UIViewController {
         dateFormatter.dateStyle = .medium
         return dateFormatter
     }()
+    private let shortHeaderDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d"
+        return dateFormatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +94,7 @@ final class ViewController: UIViewController {
         setupSections()
         setupStateButtons()
         setupConfigsButton()
-        setupScrollBarConfig(exampleStates[0].config)
+        setupScrollBarConfig(exampleStates[3].config)
         title = "DMScrollBar"
     }
 
@@ -149,7 +171,7 @@ final class ViewController: UIViewController {
     private func setupSections() {
         sections = (0..<20).map { sectionNumber in
             Section(
-                title: headerDateFormatter.string(from: Date(timeIntervalSinceNow: TimeInterval(86400 * sectionNumber))),
+                date: Date(timeIntervalSinceNow: TimeInterval(86400 * sectionNumber)),
                 items: (0..<10).map { "Item #\($0)" }
             )
         }
@@ -166,7 +188,7 @@ extension ViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        sections[section].title
+        headerDateFormatter.string(from: sections[section].date)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -181,7 +203,13 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: DMScrollBarDelegate {
     /// In this example, this method returns the section header title for the top visible section
-    func indicatorTitle(forOffset offset: CGFloat) -> String? {
+    func infoLabelText(forOffset offset: CGFloat) -> String? {
         headerTitle(in: tableView, forOffset: offset)
+    }
+
+    /// In this example, this method returns the section header title for the top visible section
+    func scrollBarText(forOffset offset: CGFloat) -> String? {
+        guard let section = sectionIndex(in: tableView, forOffset: offset) else { return nil }
+        return shortHeaderDateFormatter.string(from: sections[section].date).capitalized
     }
 }

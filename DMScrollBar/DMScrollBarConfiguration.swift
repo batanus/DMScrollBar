@@ -9,7 +9,7 @@ extension DMScrollBar {
         /// Indicates if scroll view should decelerate when ending scroll bar interaction with velocity
         public let shouldDecelerate: Bool
 
-        /// configuration, which is placed on the right side
+        /// Inficator configuration, which is placed on the right side
         public let indicator: Indicator
         
         /// Info label configuration, which appears during indicator scrolling. If nil - the info label will be hidden
@@ -51,26 +51,6 @@ extension DMScrollBar {
 
 extension DMScrollBar.Configuration {
     public struct RoundedCorners: Equatable {
-        public enum Radius: Equatable {
-            /// Not rounded corners
-            case notRounded
-            /// Half of the view's height
-            case rounded
-            /// User defined corner radius
-            case custom(CGFloat)
-        }
-
-        public enum Corner: CaseIterable, Equatable {
-            /// Represents the top left corner.
-            case topLeft
-            /// Represents the top right corner.
-            case topRight
-            /// Represents the bottom left corner.
-            case bottomLeft
-            /// Represents the bottom right corner.
-            case bottomRight
-        }
-
         /// Corner radius, which will be applied to all corners
         public let radius: Radius
 
@@ -93,6 +73,26 @@ extension DMScrollBar.Configuration {
 
         /// All corners will be rounded by a radius equal to half the view's height
         public static let allRounded = RoundedCorners(radius: .rounded, corners: Set(Corner.allCases))
+
+        public enum Radius: Equatable {
+            /// Not rounded corners
+            case notRounded
+            /// Half of the view's height
+            case rounded
+            /// User defined corner radius
+            case custom(CGFloat)
+        }
+
+        public enum Corner: CaseIterable, Equatable {
+            /// Represents the top left corner.
+            case topLeft
+            /// Represents the top right corner.
+            case topRight
+            /// Represents the bottom left corner.
+            case bottomLeft
+            /// Represents the bottom right corner.
+            case bottomRight
+        }
     }
 
     public enum AnimationType: Equatable {
@@ -132,6 +132,44 @@ extension DMScrollBar.Configuration {
     }
 
     public struct Indicator: Equatable {
+        /// Configuration for indicator state while the user is not interacting with it
+        public let normalState: StateConfig
+
+        /// Configuration for indicator state while the user interacting with it
+        public let activeState: ActiveStateConfig
+
+        /// Time in seconds for the state change animation to take place
+        public let stateChangeAnimationDuration: TimeInterval
+
+        /// Indicates if safe area insets should be taken into account
+        public let insetsFollowsSafeArea: Bool
+
+        /// Scroll bar indicator show / hide animation settings
+        public let animation: Animation
+
+        /// - Parameters:
+        ///   - normalState: Configuration for indicator state while the user is not interacting with it
+        ///   - activeState: Configuration for indicator state while the user interacting with it
+        ///   - stateChangeAnimationDuration: Time in seconds for the state change animation to take place
+        ///   - insetsFollowsSafeArea: Indicates if safe area insets should be taken into account
+        ///   - animation: Scroll bar indicator show / hide animation settings
+        public init(
+            normalState: StateConfig = .default,
+            activeState: ActiveStateConfig = .unchanged,
+            stateChangeAnimationDuration: TimeInterval = 0.3,
+            insetsFollowsSafeArea: Bool = true,
+            animation: Animation = .default
+        ) {
+            self.normalState = normalState
+            self.activeState = activeState
+            self.stateChangeAnimationDuration = stateChangeAnimationDuration
+            self.insetsFollowsSafeArea = insetsFollowsSafeArea
+            self.animation = animation
+        }
+
+        /// Default indicator configuration
+        public static let `default` = Indicator()
+
         public struct StateConfig: Equatable {
             /// Size of the scroll bar indicator, which is placed on the right side
             public let size: CGSize
@@ -195,40 +233,34 @@ extension DMScrollBar.Configuration {
             /// Use the same configuration as for normal state but scaled with specified factor. F. e. factor = 1 will not scale indicator size, factor = 2 will scale indicator size by 2 times. If in normal state indicator size is 30x30, active state with scale factor = 2 will have size 60x60
             case scaled(factor: CGFloat)
             /// Use custom configuration for active state
-            case custom(config: StateConfig)
+            /// - Parameters:
+            ///   - config: State configuration for indicator state while the user is interacting with it
+            ///   - text: Scroll bar text config that appears to the right of the image
+            case custom(config: StateConfig, textConfig: TextConfig? = nil)
+
+            public struct TextConfig: Equatable {
+                /// Text label insets from
+                public let insets: UIEdgeInsets
+                /// Font that should be used for text
+                public let font: UIFont
+                /// Text color of the label
+                public let color: UIColor
+
+                /// - Parameters:
+                ///   - insets: Text label insets from
+                ///   - font: Font that should be used for text
+                ///   - color: Text color of the label
+                public init(
+                    insets: UIEdgeInsets,
+                    font: UIFont,
+                    color: UIColor
+                ) {
+                    self.insets = insets
+                    self.font = font
+                    self.color = color
+                }
+            }
         }
-
-        /// Configuration for indicator state while the user is not interacting with it
-        public let normalState: StateConfig
-
-        /// Configuration for indicator state while the user interacting with it
-        public let activeState: ActiveStateConfig
-
-        /// Indicates if safe area insets should be taken into account
-        public let insetsFollowsSafeArea: Bool
-
-        /// Scroll bar indicator show / hide animation settings
-        public let animation: Animation
-
-        /// - Parameters:
-        ///   - normalState: Configuration for indicator state while the user is not interacting with it
-        ///   - activeState: Configuration for indicator state while the user interacting with it
-        ///   - insetsFollowsSafeArea: Indicates if safe area insets should be taken into account
-        ///   - animation: Scroll bar indicator show / hide animation settings
-        public init(
-            normalState: StateConfig = .default,
-            activeState: ActiveStateConfig = .unchanged,
-            insetsFollowsSafeArea: Bool = true,
-            animation: Animation = .default
-        ) {
-            self.normalState = normalState
-            self.activeState = activeState
-            self.insetsFollowsSafeArea = insetsFollowsSafeArea
-            self.animation = animation
-        }
-
-        /// Default indicator configuration
-        public static let `default` = Indicator()
     }
 
     public struct InfoLabel: Equatable {
