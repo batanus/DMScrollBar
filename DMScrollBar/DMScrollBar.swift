@@ -11,27 +11,16 @@ public class DMScrollBar: UIView {
 
     private weak var scrollView: UIScrollView?
     private weak var delegate: DMScrollBarDelegate?
-    private let scrollIndicator = UIView()
+    private let scrollIndicator = ScrollBarIndicator()
     private let additionalInfoView = UIView()
     private let offsetLabel = UILabel()
-    private var indicatorImageLabelStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    private var indicatorImage: UIImageView?
-    private var indicatorLabel: UILabel?
 
     private var scrollIndicatorTopConstraint: NSLayoutConstraint?
     private var scrollIndicatorTrailingConstraint: NSLayoutConstraint?
     private var scrollIndicatorWidthConstraint: NSLayoutConstraint?
     private var scrollIndicatorHeightConstraint: NSLayoutConstraint?
     private var offsetLabelTrailingConstraint: NSLayoutConstraint?
-    private var indicatorImageWidthConstraint: NSLayoutConstraint?
-    private var indicatorImageHeightConstraint: NSLayoutConstraint?
-    private var indicatorImageLabelStackViewLeadingConstraint: NSLayoutConstraint?
-    private var indicatorImageLabelStackViewTrailingConstraint: NSLayoutConstraint?
+
     private var cancellables = Set<AnyCancellable>()
     private var hideTimer: Timer?
     private var panGestureRecognizer: UIPanGestureRecognizer?
@@ -92,14 +81,13 @@ public class DMScrollBar: UIView {
 
     private func setupScrollIndicator() {
         addSubview(scrollIndicator)
-        scrollIndicator.translatesAutoresizingMaskIntoConstraints = false
-        scrollIndicator.clipsToBounds = true
-        setup(stateConfig: configuration.indicator.normalState)
-        setupIndicatorImageAndText(image: configuration.indicator.normalState.image, textConfig: nil, imageSize: configuration.indicator.normalState.imageSize)
+        setup(stateConfig: configuration.indicator.normalState, indicatorTextConfig: nil)
     }
 
-    private func setup(stateConfig: DMScrollBar.Configuration.Indicator.StateConfig) {
-        scrollIndicator.backgroundColor = stateConfig.backgroundColor
+    private func setup(
+        stateConfig: DMScrollBar.Configuration.Indicator.StateConfig,
+        indicatorTextConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?
+    ) {
         let scrollIndicatorInitialDistance = configuration.indicator.animation.animationType == .fadeAndSide && !configuration.isAlwaysVisible && alpha == 0 ?
             stateConfig.size.width :
             -stateConfig.insets.right
@@ -126,107 +114,7 @@ public class DMScrollBar: UIView {
             scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: topOffset)
             scrollIndicatorTopConstraint?.isActive = true
         }
-        scrollIndicator.layer.maskedCorners = stateConfig.roundedCorners.corners.cornerMask
-        scrollIndicator.layer.cornerRadius = cornerRadius(
-            from: stateConfig.roundedCorners.radius,
-            viewSize: stateConfig.size
-        )
-    }
-
-    private func setupIndicatorImageAndText(image: UIImage?, textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?, imageSize: CGSize) {
-        if indicatorImageLabelStackView.superview == nil {
-            scrollIndicator.addSubview(indicatorImageLabelStackView)
-            let centerX = indicatorImageLabelStackView.centerXAnchor.constraint(equalTo: scrollIndicator.centerXAnchor)
-            centerX.priority = .init(999)
-            centerX.isActive = true
-            indicatorImageLabelStackView.centerYAnchor.constraint(equalTo: scrollIndicator.centerYAnchor).isActive = true
-        }
-        let defaultInset: CGFloat = 8
-        let leadingInset: CGFloat = {
-            guard let textConfig else { return 0 }
-            return image == nil ? textConfig.insets.left : defaultInset
-        }()
-        setupConstraint(
-            constraint: &indicatorImageLabelStackViewLeadingConstraint,
-            build: { indicatorImageLabelStackView.leadingAnchor.constraint(equalTo: scrollIndicator.leadingAnchor, constant: $0) },
-            value: leadingInset
-        )
-        setupConstraint(
-            constraint: &indicatorImageLabelStackViewTrailingConstraint,
-            build: { scrollIndicator.trailingAnchor.constraint(equalTo: indicatorImageLabelStackView.trailingAnchor, constant: $0) },
-            value: textConfig != nil ? textConfig?.insets.right ?? defaultInset : 0
-        )
-        setupIndicatorImageViewState(image: image, size: imageSize)
-        setupIndicatorLabelState(config: textConfig)
-    }
-
-    private func setupIndicatorImageViewState(image: UIImage?, size: CGSize) {
-        buildIndicatorImageViewIfNeeded()
-        if let image {
-            indicatorImage?.isHidden = false
-            indicatorImage?.alpha = 1
-            indicatorImage?.image = image
-            setupConstraint(
-                constraint: &indicatorImageWidthConstraint,
-                build: indicatorImage?.widthAnchor.constraint(equalToConstant:),
-                value: size.width,
-                priority: .init(999)
-            )
-            setupConstraint(
-                constraint: &indicatorImageHeightConstraint,
-                build: indicatorImage?.heightAnchor.constraint(equalToConstant:),
-                value: size.height
-            )
-        } else {
-            indicatorImage?.isHidden = true
-            indicatorImage?.alpha = 0
-        }
-    }
-
-    private func setupIndicatorLabelState(config: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?) {
-        buildIndicatorLabelIfNeeded()
-        if let config {
-            showIndicatorLabel()
-            indicatorLabel?.font = config.font
-            indicatorLabel?.textColor = config.color
-            indicatorImageLabelStackView.spacing = config.insets.left
-        } else {
-            hideIndicatorLabel()
-        }
-    }
-
-    private func buildIndicatorImageViewIfNeeded() {
-        guard indicatorImage == nil else { return }
-        let imageView = UIImageView()
-        indicatorImageLabelStackView.addArrangedSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        self.indicatorImage = imageView
-    }
-
-    private func buildIndicatorLabelIfNeeded() {
-        guard indicatorLabel == nil else { return }
-        let label = UILabel()
-        indicatorImageLabelStackView.addArrangedSubview(label)
-        label.setContentHuggingPriority(.required, for: .horizontal)
-        label.setContentCompressionResistancePriority(.required, for: .horizontal)
-        self.indicatorLabel = label
-    }
-
-    private func setupConstraint(constraint: inout NSLayoutConstraint?, build: (CGFloat) -> NSLayoutConstraint, value: CGFloat, priority: UILayoutPriority = .required) {
-        if let constraint {
-            constraint.constant = value
-            constraint.priority = priority
-        } else {
-            constraint = build(value)
-            constraint?.priority = priority
-            constraint?.isActive = true
-        }
-    }
-
-    private func setupConstraint(constraint: inout NSLayoutConstraint?, build: ((CGFloat) -> NSLayoutConstraint)?, value: CGFloat, priority: UILayoutPriority = .required) {
-        guard let build else { return }
-        setupConstraint(constraint: &constraint, build: build, value: value, priority: priority)
+        scrollIndicator.setup(stateConfig: stateConfig, textConfig: indicatorTextConfig)
     }
 
     private func setupAdditionalInfoView() {
@@ -265,14 +153,6 @@ public class DMScrollBar: UIView {
 
         additionalInfoView.alpha = 0
         additionalInfoView.clipsToBounds = true
-    }
-
-    private func cornerRadius(from radius: DMScrollBar.Configuration.RoundedCorners.Radius, viewSize: CGSize) -> CGFloat {
-        switch radius {
-        case .notRounded: return 0
-        case .rounded: return min(viewSize.height, viewSize.width) / 2
-        case .custom(let radius): return radius
-        }
     }
 
     // MARK: - Scroll view observation
@@ -320,8 +200,12 @@ public class DMScrollBar: UIView {
         if additionalInfoView.alpha == 1 {
             updateAdditionalInfoViewState(forScrollOffset: newOffset.y, previousOffset: previousOffset?.y)
         }
-        if indicatorLabel?.alpha == 1 {
-            updateScrollIndicatorText(forScrollOffset: newOffset.y, previousOffset: previousOffset?.y, stateConfig: configuration.indicator.activeState.textConfig)
+        if scrollIndicator.isIndicatorLabelVisible {
+            updateScrollIndicatorText(
+                forScrollOffset: newOffset.y,
+                previousOffset: previousOffset?.y,
+                textConfig: configuration.indicator.activeState.textConfig
+            )
         }
     }
 
@@ -379,7 +263,11 @@ public class DMScrollBar: UIView {
         let previousOffset = scrollView.contentOffset
         scrollView.setContentOffset(CGPoint(x: 0, y: newScrollOffset), animated: false)
         updateAdditionalInfoViewState(forScrollOffset: newScrollOffset, previousOffset: previousOffset.y)
-        updateScrollIndicatorText(forScrollOffset: newScrollOffset, previousOffset: previousOffset.y, stateConfig: configuration.indicator.activeState.textConfig)
+        updateScrollIndicatorText(
+            forScrollOffset: newScrollOffset,
+            previousOffset: previousOffset.y,
+            textConfig: configuration.indicator.activeState.textConfig
+        )
     }
 
     private func handlePanGestureEnded(_ recognizer: UIPanGestureRecognizer) {
@@ -419,7 +307,11 @@ public class DMScrollBar: UIView {
         updateAdditionalInfoViewState(forScrollOffset: scrollOffset, previousOffset: nil)
         invalidateHideTimer()
         generateHapticFeedback()
-        updateScrollIndicatorText(forScrollOffset: scrollOffset, previousOffset: nil, stateConfig: configuration.indicator.activeState.textConfig)
+        updateScrollIndicatorText(
+            forScrollOffset: scrollOffset,
+            previousOffset: nil,
+            textConfig: configuration.indicator.activeState.textConfig
+        )
         switch configuration.indicator.activeState {
         case .unchanged: break
         case .scaled(let factor): animateIndicatorStateChange(to: configuration.indicator.normalState.applying(scaleFactor: factor), textConfig: nil)
@@ -436,10 +328,12 @@ public class DMScrollBar: UIView {
         }
     }
 
-    private func animateIndicatorStateChange(to stateConfig: DMScrollBar.Configuration.Indicator.StateConfig, textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?) {
+    private func animateIndicatorStateChange(
+        to stateConfig: DMScrollBar.Configuration.Indicator.StateConfig,
+        textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?
+    ) {
         animate(duration: configuration.indicator.stateChangeAnimationDuration) { [weak self] in
-            self?.setup(stateConfig: stateConfig)
-            self?.setupIndicatorImageAndText(image: stateConfig.image, textConfig: textConfig, imageSize: stateConfig.imageSize)
+            self?.setup(stateConfig: stateConfig, indicatorTextConfig: textConfig)
             self?.layoutIfNeeded()
         }
     }
@@ -654,35 +548,25 @@ public class DMScrollBar: UIView {
         generateHapticFeedback(style: .light)
     }
 
-    private func hideIndicatorLabel() {
-        indicatorLabel?.alpha = 0
-        indicatorLabel?.isHidden = true
-    }
-
-    private func showIndicatorLabel() {
-        indicatorLabel?.alpha = 1
-        indicatorLabel?.isHidden = false
-    }
-
     private func updateScrollIndicatorText(
         forScrollOffset scrollViewOffset: CGFloat,
         previousOffset: CGFloat?,
-        stateConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?
+        textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?
     ) {
-        guard let scrollBarLabelText = delegate?.scrollBarText(forOffset: scrollViewOffset), stateConfig != nil else { return hideIndicatorLabel() }
-        if scrollBarLabelText == indicatorLabel?.text { return }
         let direction: CATransitionSubtype? = {
             guard let previousOffset else { return nil }
             return scrollViewOffset > previousOffset ? .fromTop : .fromBottom
         }()
-        indicatorLabel?.setup(text: scrollBarLabelText, direction: direction)
-        indicatorImageLabelStackView.layoutIfNeeded()
-        generateHapticFeedback(style: .light)
+        scrollIndicator.updateScrollIndicatorText(
+            direction: direction,
+            scrollBarLabelText: delegate?.scrollBarText(forOffset: scrollViewOffset),
+            textConfig: textConfig
+        )
     }
 
     private func animateScrollBarShow() {
         guard alpha == 0 else { return }
-        setup(stateConfig: configuration.indicator.normalState)
+        setup(stateConfig: configuration.indicator.normalState, indicatorTextConfig: nil)
         layoutIfNeeded()
         animate(duration: configuration.indicator.animation.showDuration) { [weak self] in
             guard let self else { return }
@@ -736,10 +620,6 @@ public class DMScrollBar: UIView {
             animations: animation
         )
     }
-
-    private func generateHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle = .heavy) {
-        UIImpactFeedbackGenerator(style: style).impactOccurred()
-    }
 }
 
 // MARK: - UIGestureRecognizerDelegateg
@@ -755,44 +635,5 @@ extension DMScrollBar: UIGestureRecognizerDelegate {
 
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return scrollIndicator.frame.minY...scrollIndicator.frame.maxY ~= touch.location(in: self).y
-    }
-}
-
-private extension DMScrollBar.Configuration.RoundedCorners.Corner {
-    var cornerMask: CACornerMask {
-        switch self {
-        case .topLeft: return .layerMinXMinYCorner
-        case .bottomLeft: return .layerMinXMaxYCorner
-        case .topRight: return .layerMaxXMinYCorner
-        case .bottomRight: return .layerMaxXMaxYCorner
-        }
-    }
-}
-
-private extension Sequence where Element == DMScrollBar.Configuration.RoundedCorners.Corner {
-    var cornerMask: CACornerMask {
-        CACornerMask(map(\.cornerMask))
-    }
-}
-
-private extension DMScrollBar.Configuration.Indicator.StateConfig {
-    func applying(scaleFactor: CGFloat) -> DMScrollBar.Configuration.Indicator.StateConfig {
-        .init(
-            size: CGSize(width: size.width * scaleFactor, height: size.height * scaleFactor),
-            backgroundColor: backgroundColor,
-            insets: insets,
-            image: image,
-            imageSize: CGSize(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor),
-            roundedCorners: roundedCorners
-        )
-    }
-}
-
-private extension DMScrollBar.Configuration.Indicator.ActiveStateConfig {
-    var textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig? {
-        switch self {
-        case .custom(_, let textConfig): return textConfig
-        default: return nil
-        }
     }
 }
