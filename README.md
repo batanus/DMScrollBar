@@ -6,9 +6,9 @@
 [![Platform](https://img.shields.io/cocoapods/p/DMScrollBar.svg?style=flat)](https://cocoapods.org/pods/DMScrollBar)
 
 ## Example
-iOS style | Default style | iOS & Default combined style  | Absolutely custom style | Easy to change
-:-: | :-: | :-: | :-: | :-:
-| <img width="170" src="https://user-images.githubusercontent.com/25244017/209937427-7274d753-c4f1-45f8-93be-659b7d3b4434.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937470-d76a558c-6350-4d96-a142-13a6ef32e0f8.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937479-e7acbbd1-fba1-4fa8-a34f-9bb4b3ee790e.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937494-f61232a5-319a-4f88-abaf-b9340105746a.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937517-be2e6f54-53f9-447d-ad38-4fab39624551.gif">
+iOS style | Default style | iOS & Default combined style  | Absolutely custom style | Right label style |Easy to change
+:-: | :-: | :-: | :-: | :-: | :-:
+| <img width="170" src="https://user-images.githubusercontent.com/25244017/209937427-7274d753-c4f1-45f8-93be-659b7d3b4434.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937470-d76a558c-6350-4d96-a142-13a6ef32e0f8.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937479-e7acbbd1-fba1-4fa8-a34f-9bb4b3ee790e.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937494-f61232a5-319a-4f88-abaf-b9340105746a.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/212671212-3f507ff5-83ea-491d-b80a-8981a0fbd005.gif"> | <img width="170" src="https://user-images.githubusercontent.com/25244017/209937517-be2e6f54-53f9-447d-ad38-4fab39624551.gif">
 
 
 
@@ -79,7 +79,7 @@ If you want to configure scroll bar, with custom config, create configuration an
 let customConfig = DMScrollBar.Configuration(
     isAlwaysVisible: false,
     hideTimeInterval: 1.5,
-    shouldDecelerate: true,
+    shouldDecelerate: false,
     indicator: DMScrollBar.Configuration.Indicator(
         normalState: .init(
             size: CGSize(width: 35, height: 35),
@@ -89,14 +89,18 @@ let customConfig = DMScrollBar.Configuration(
             imageSize: CGSize(width: 20, height: 20),
             roundedCorners: .roundedLeftCorners
         ),
-        activeState: .init(
-            size: CGSize(width: 50, height: 50),
-            backgroundColor: UIColor.brown,
-            insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
-            image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
-            imageSize: CGSize(width: 28, height: 28),
-            roundedCorners: .allRounded
+        activeState: .custom(
+            config: .init(
+                size: CGSize(width: 50, height: 50),
+                backgroundColor: UIColor.brown,
+                insets: UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 6),
+                image: UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.cyan),
+                imageSize: CGSize(width: 28, height: 28),
+                roundedCorners: .allRounded
+            ),
+            textConfig: nil
         ),
+        stateChangeAnimationDuration: 0.5,
         insetsFollowsSafeArea: true,
         animation: .init(showDuration: 0.75, hideDuration: 0.75, animationType: .fadeAndSide)
     ),

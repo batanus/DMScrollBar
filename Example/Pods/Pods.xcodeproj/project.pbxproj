@@ -27,10 +27,10 @@
 		ABB4F1F163AD59FF5DF185AF87763B24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		B1E1306A5A97955220FB09949AD64F19 /* UISpringTimingParameters+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652DCA7F20C5639171F499EED793ECF6 /* UISpringTimingParameters+Utils.swift */; };
 		B95B20B55155E71F25DBA968BB00FB83 /* Comparable+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B57941C98C83B75A7C5126891214FD /* Comparable+Utils.swift */; };
-		BFCEBDC429755BF600D59AD9 /* ScrollBarIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCEBDC329755BF600D59AD9 /* ScrollBarIndicator.swift */; };
+		BF6D5910297571EB00D07C4B /* ScrollBarIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D590E297571EB00D07C4B /* ScrollBarIndicator.swift */; };
+		BF6D5911297571EB00D07C4B /* ScrollBarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6D590F297571EB00D07C4B /* ScrollBarInfoView.swift */; };
 		BFCEBDC62975626B00D59AD9 /* Sequence+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCEBDC52975626B00D59AD9 /* Sequence+Utils.swift */; };
 		BFCEBDC82975628F00D59AD9 /* Configuration+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCEBDC72975628F00D59AD9 /* Configuration+Utils.swift */; };
-		BFCEBDCA2975643500D59AD9 /* ScrollBarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCEBDC92975643500D59AD9 /* ScrollBarInfoView.swift */; };
 		C6C322A84C7D96D17538D8475022D52B /* DMScrollBarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3492AA78AC5174C7CE094ADECC23450 /* DMScrollBarConfiguration.swift */; };
 		CB473A9D6F5B5F031484813374EF9F65 /* DMScrollBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D68D79E227149CF8D33C77CEBD0F8 /* DMScrollBarDelegate.swift */; };
 		D29CBA526A20A08D31446DA688A2B973 /* DMScrollBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4010C4BAF1D36522BBA1D0975AAA1774 /* DMScrollBar-dummy.m */; };
@@ -105,10 +105,10 @@
 		B9470EE98BDF201066027659576E4EEA /* DMScrollBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DMScrollBar.modulemap; sourceTree = "<group>"; };
 		B948DB9BA0CAC89F74EB485B8F5F7C27 /* Pods-DMScrollBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DMScrollBar_Example.modulemap"; sourceTree = "<group>"; };
 		BD78812C19E74B3C5B913D6F4F57D36B /* DMScrollBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DMScrollBar-prefix.pch"; sourceTree = "<group>"; };
-		BFCEBDC329755BF600D59AD9 /* ScrollBarIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollBarIndicator.swift; sourceTree = "<group>"; };
+		BF6D590E297571EB00D07C4B /* ScrollBarIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollBarIndicator.swift; path = DMScrollBar/ScrollBarIndicator.swift; sourceTree = "<group>"; };
+		BF6D590F297571EB00D07C4B /* ScrollBarInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollBarInfoView.swift; path = DMScrollBar/ScrollBarInfoView.swift; sourceTree = "<group>"; };
 		BFCEBDC52975626B00D59AD9 /* Sequence+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Utils.swift"; sourceTree = "<group>"; };
 		BFCEBDC72975628F00D59AD9 /* Configuration+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Utils.swift"; sourceTree = "<group>"; };
-		BFCEBDC92975643500D59AD9 /* ScrollBarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollBarInfoView.swift; sourceTree = "<group>"; };
 		C01AAC21FAD648BD0853D8EEC81C7A93 /* RubberBand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RubberBand.swift; sourceTree = "<group>"; };
 		CCCD9C05CCF9E7FC322F33768C11721B /* UILabel+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UILabel+Utils.swift"; sourceTree = "<group>"; };
 		D93D68D79E227149CF8D33C77CEBD0F8 /* DMScrollBarDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DMScrollBarDelegate.swift; path = DMScrollBar/DMScrollBarDelegate.swift; sourceTree = "<group>"; };
@@ -202,10 +202,10 @@
 			isa = PBXGroup;
 			children = (
 				259352A7115EC49799FB77B45FF76BCD /* DMScrollBar.swift */,
-				BFCEBDC329755BF600D59AD9 /* ScrollBarIndicator.swift */,
-				BFCEBDC92975643500D59AD9 /* ScrollBarInfoView.swift */,
 				A3492AA78AC5174C7CE094ADECC23450 /* DMScrollBarConfiguration.swift */,
 				D93D68D79E227149CF8D33C77CEBD0F8 /* DMScrollBarDelegate.swift */,
+				BF6D590E297571EB00D07C4B /* ScrollBarIndicator.swift */,
+				BF6D590F297571EB00D07C4B /* ScrollBarInfoView.swift */,
 				5B7E463C24B4D781697DA6CE817D7D89 /* Deceleration+Spring */,
 				A63BB959D82BB59ED2C113B677432781 /* Pod */,
 				CF0F5424670C7AB150988E0B967F0C79 /* Support Files */,
@@ -471,7 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57EC77DE4CFB03E83585B639FF077B3F /* CASpringAnimation+Utils.swift in Sources */,
-				BFCEBDCA2975643500D59AD9 /* ScrollBarInfoView.swift in Sources */,
+				BF6D5911297571EB00D07C4B /* ScrollBarInfoView.swift in Sources */,
 				3A7A2488D80931145D616B90D73859B4 /* CGPoint+Utils.swift in Sources */,
 				B95B20B55155E71F25DBA968BB00FB83 /* Comparable+Utils.swift in Sources */,
 				DED58B2AEC2333080FE06FBB5A73F5DC /* ConvenienceFunctions.swift in Sources */,
@@ -491,7 +491,7 @@
 				1F9D74CF3977659B805F3DE75549A8D5 /* UIColor+Utils.swift in Sources */,
 				0A620F0A3ECB87E85677588A301C4CEB /* UIGestureRecognizer+Utils.swift in Sources */,
 				39420545BED237A61E1AED3BA2898982 /* UILabel+Utils.swift in Sources */,
-				BFCEBDC429755BF600D59AD9 /* ScrollBarIndicator.swift in Sources */,
+				BF6D5910297571EB00D07C4B /* ScrollBarIndicator.swift in Sources */,
 				74F3DF86B0714F1D76C84CABD5206518 /* UIScrollView+Utils.swift in Sources */,
 				B1E1306A5A97955220FB09949AD64F19 /* UISpringTimingParameters+Utils.swift in Sources */,
 				FA394362F13DD4926CA09EA9A24B2057 /* UIView+Utils.swift in Sources */,
