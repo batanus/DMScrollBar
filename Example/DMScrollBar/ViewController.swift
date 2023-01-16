@@ -94,7 +94,7 @@ final class ViewController: UIViewController {
         setupSections()
         setupStateButtons()
         setupConfigsButton()
-        setupScrollBarConfig(exampleStates[3].config)
+        setupScrollBarConfig(exampleStates[0].config)
         title = "DMScrollBar"
     }
 
