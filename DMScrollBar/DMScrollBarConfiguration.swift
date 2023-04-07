@@ -180,6 +180,9 @@ extension DMScrollBar.Configuration {
             /// Scroll bar indicator insets
             public let insets: UIEdgeInsets
 
+            /// Scroll bar indicator content insets
+            public let contentInsets: UIEdgeInsets
+
             /// Scroll bar image
             public let image: UIImage?
 
@@ -193,6 +196,7 @@ extension DMScrollBar.Configuration {
             ///   - size: Size of the scroll bar indicator, which is placed on the right side
             ///   - backgroundColor: Background color of the scroll bar indicator
             ///   - insets: Scroll bar indicator insets
+            ///   - contentInsets: Scroll bar indicator content insets
             ///   - image: Scroll bar image
             ///   - imageSize: Scroll bar image size. If a nil image is passed - this parameter is ignored
             ///   - roundedCorners: Scroll bar indicator corners which should be rounded
@@ -200,6 +204,7 @@ extension DMScrollBar.Configuration {
                 size: CGSize = CGSize(width: 34, height: 34),
                 backgroundColor: UIColor = UIColor.defaultScrollBarBackground,
                 insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0),
+                contentInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),
                 image: UIImage? = UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.systemBackground),
                 imageSize: CGSize = CGSize(width: 20, height: 20),
                 roundedCorners: RoundedCorners = .roundedLeftCorners
@@ -207,6 +212,7 @@ extension DMScrollBar.Configuration {
                 self.size = size
                 self.backgroundColor = backgroundColor
                 self.insets = insets
+                self.contentInsets = contentInsets
                 self.image = image
                 self.imageSize = imageSize
                 self.roundedCorners = roundedCorners
@@ -221,6 +227,7 @@ extension DMScrollBar.Configuration {
                     size: .init(width: width, height: 100),
                     backgroundColor: UIColor.label.withAlphaComponent(0.35),
                     insets: .init(top: 4, left: 0, bottom: 4, right: 2),
+                    contentInsets: .zero,
                     image: nil,
                     roundedCorners: .allRounded
                 )

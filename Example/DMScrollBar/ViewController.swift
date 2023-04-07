@@ -203,13 +203,13 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: DMScrollBarDelegate {
     /// In this example, this method returns the section header title for the top visible section
-    func infoLabelText(forOffset offset: CGFloat) -> String? {
-        headerTitle(in: tableView, forOffset: offset)
+    func infoLabelText(forContentOffset contentOffset: CGFloat, scrollIndicatorOffset: CGFloat) -> String? {
+        headerTitle(in: tableView, forOffset: contentOffset)
     }
 
     /// In this example, this method returns the section header title for the top visible section
-    func scrollBarText(forOffset offset: CGFloat) -> String? {
-        guard let section = sectionIndex(in: tableView, forOffset: offset) else { return nil }
+    func scrollBarText(forContentOffset contentOffset: CGFloat, scrollIndicatorOffset: CGFloat) -> String? {
+        guard let section = sectionIndex(in: tableView, forOffset: contentOffset) else { return nil }
         return shortHeaderDateFormatter.string(from: sections[section].date).capitalized
     }
 }

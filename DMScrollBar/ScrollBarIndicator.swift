@@ -54,10 +54,9 @@ final class ScrollBarIndicator: UIView {
             centerX.isActive = true
             indicatorImageLabelStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         }
-        let defaultInset: CGFloat = 8
         let leadingInset: CGFloat = {
-            guard let textConfig else { return 0 }
-            return stateConfig.image == nil ? textConfig.insets.left : defaultInset
+            guard let textConfig else { return stateConfig.contentInsets.left }
+            return stateConfig.image == nil ? textConfig.insets.left : stateConfig.contentInsets.left
         }()
         setupConstraint(
             constraint: &indicatorImageLabelStackViewLeadingConstraint,
@@ -67,7 +66,7 @@ final class ScrollBarIndicator: UIView {
         setupConstraint(
             constraint: &indicatorImageLabelStackViewTrailingConstraint,
             build: { trailingAnchor.constraint(equalTo: indicatorImageLabelStackView.trailingAnchor, constant: $0) },
-            value: textConfig != nil ? textConfig?.insets.right ?? defaultInset : 0
+            value: textConfig?.insets.right ?? stateConfig.contentInsets.right
         )
         setupIndicatorImageViewState(image: stateConfig.image, size: stateConfig.imageSize)
         setupIndicatorLabelState(config: textConfig)
