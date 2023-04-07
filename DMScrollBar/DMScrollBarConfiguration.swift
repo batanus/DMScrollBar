@@ -71,6 +71,9 @@ extension DMScrollBar.Configuration {
         /// Top left and bottom left corners will be rounded by a radius equal to half the view's height
         public static let roundedLeftCorners = RoundedCorners(radius: .rounded, corners: [.topLeft, .bottomLeft])
 
+        /// Top right and bottom right corners will be rounded by a radius equal to half the view's height
+        public static let roundedRightCorners = RoundedCorners(radius: .rounded, corners: [.topRight, .bottomRight])
+
         /// All corners will be rounded by a radius equal to half the view's height
         public static let allRounded = RoundedCorners(radius: .rounded, corners: Set(Corner.allCases))
 
@@ -147,24 +150,30 @@ extension DMScrollBar.Configuration {
         /// Scroll bar indicator show / hide animation settings
         public let animation: Animation
 
+        /// Accessibility identifier of the indicator
+        public let accessibilityIdentifier: String?
+
         /// - Parameters:
         ///   - normalState: Configuration for indicator state while the user is not interacting with it
         ///   - activeState: Configuration for indicator state while the user interacting with it
         ///   - stateChangeAnimationDuration: Time in seconds for the state change animation to take place
         ///   - insetsFollowsSafeArea: Indicates if safe area insets should be taken into account
         ///   - animation: Scroll bar indicator show / hide animation settings
+        ///   - accessibilityIdentifier: Accessibility identifier of the indicator
         public init(
             normalState: StateConfig = .default,
             activeState: ActiveStateConfig = .unchanged,
             stateChangeAnimationDuration: TimeInterval = 0.3,
             insetsFollowsSafeArea: Bool = true,
-            animation: Animation = .default
+            animation: Animation = .default,
+            accessibilityIdentifier: String? = nil
         ) {
             self.normalState = normalState
             self.activeState = activeState
             self.stateChangeAnimationDuration = stateChangeAnimationDuration
             self.insetsFollowsSafeArea = insetsFollowsSafeArea
             self.animation = animation
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
 
         /// Default indicator configuration
@@ -189,6 +198,9 @@ extension DMScrollBar.Configuration {
             /// Scroll bar image size
             public let imageSize: CGSize
 
+            /// Accessibility identifier of the image
+            public let imageAccessibilityIdentifier: String?
+
             /// Scroll bar indicator corners which should be rounded
             public let roundedCorners: RoundedCorners
 
@@ -199,6 +211,7 @@ extension DMScrollBar.Configuration {
             ///   - contentInsets: Scroll bar indicator content insets
             ///   - image: Scroll bar image
             ///   - imageSize: Scroll bar image size. If a nil image is passed - this parameter is ignored
+            ///   - imageAccessibilityIdentifier: Accessibility identifier of the image
             ///   - roundedCorners: Scroll bar indicator corners which should be rounded
             public init(
                 size: CGSize = CGSize(width: 34, height: 34),
@@ -207,6 +220,7 @@ extension DMScrollBar.Configuration {
                 contentInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),
                 image: UIImage? = UIImage(systemName: "arrow.up.and.down.circle")?.withRenderingMode(.alwaysOriginal).withTintColor(UIColor.systemBackground),
                 imageSize: CGSize = CGSize(width: 20, height: 20),
+                imageAccessibilityIdentifier: String? = nil,
                 roundedCorners: RoundedCorners = .roundedLeftCorners
             ) {
                 self.size = size
@@ -215,6 +229,7 @@ extension DMScrollBar.Configuration {
                 self.contentInsets = contentInsets
                 self.image = image
                 self.imageSize = imageSize
+                self.imageAccessibilityIdentifier = imageAccessibilityIdentifier
                 self.roundedCorners = roundedCorners
             }
 
@@ -252,19 +267,24 @@ extension DMScrollBar.Configuration {
                 public let font: UIFont
                 /// Text color of the label
                 public let color: UIColor
+                /// Accessibility identifier of the label
+                public let accessibilityIdentifier: String?
 
                 /// - Parameters:
                 ///   - insets: Text label insets from
                 ///   - font: Font that should be used for text
                 ///   - color: Text color of the label
+                ///   - accessibilityIdentifier: Accessibility identifier of the label
                 public init(
                     insets: UIEdgeInsets,
                     font: UIFont,
-                    color: UIColor
+                    color: UIColor,
+                    accessibilityIdentifier: String? = nil
                 ) {
                     self.insets = insets
                     self.font = font
                     self.color = color
+                    self.accessibilityIdentifier = accessibilityIdentifier
                 }
             }
         }
@@ -295,6 +315,9 @@ extension DMScrollBar.Configuration {
         /// Info label show/hide animation settings
         public let animation: Animation
 
+        /// Accessibility identifier of the info label
+        public let accessibilityIdentifier: String?
+
         /// - Parameters:
         ///   - font: Indicates the font that should be used for info label, which appears during indicator scrolling
         ///   - textColor: Text color of the info label
@@ -304,6 +327,7 @@ extension DMScrollBar.Configuration {
         ///   - maximumWidth: Indicates maximum width of info label. If nil is passed - the info label will grow maximum to the leading side of the screen
         ///   - roundedCorners: Info label corenrs which should be rounded
         ///   - animation: Info label show/hide animation settings
+        ///   - accessibilityIdentifier: Accessibility identifier of the info label
         public init(
             font: UIFont = UIFont.systemFont(ofSize: 13),
             textColor: UIColor = UIColor.systemBackground,
@@ -312,7 +336,8 @@ extension DMScrollBar.Configuration {
             textInsets: UIEdgeInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10),
             maximumWidth: CGFloat? = nil,
             roundedCorners: RoundedCorners = .allRounded,
-            animation: Animation = .default
+            animation: Animation = .default,
+            accessibilityIdentifier: String? = nil
         ) {
             self.font = font
             self.textColor = textColor
@@ -322,6 +347,7 @@ extension DMScrollBar.Configuration {
             self.maximumWidth = maximumWidth
             self.roundedCorners = roundedCorners
             self.animation = animation
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
 
         /// Default info label configuration

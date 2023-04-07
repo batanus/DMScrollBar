@@ -113,7 +113,11 @@ public class DMScrollBar: UIView {
             scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: topOffset)
             scrollIndicatorTopConstraint?.isActive = true
         }
-        scrollIndicator.setup(stateConfig: stateConfig, textConfig: indicatorTextConfig)
+        scrollIndicator.setup(
+            stateConfig: stateConfig,
+            textConfig: indicatorTextConfig,
+            accessibilityIdentifier: configuration.indicator.accessibilityIdentifier
+        )
     }
 
     private func setupAdditionalInfoView() {

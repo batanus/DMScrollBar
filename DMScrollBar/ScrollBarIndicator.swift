@@ -39,8 +39,11 @@ final class ScrollBarIndicator: UIView {
 
     func setup(
         stateConfig: DMScrollBar.Configuration.Indicator.StateConfig,
-        textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?
+        textConfig: DMScrollBar.Configuration.Indicator.ActiveStateConfig.TextConfig?,
+        accessibilityIdentifier: String? = nil
     ) {
+        self.accessibilityIdentifier = accessibilityIdentifier
+        self.isAccessibilityElement = false
         backgroundColor = stateConfig.backgroundColor
         layer.maskedCorners = stateConfig.roundedCorners.corners.cornerMask
         layer.cornerRadius = cornerRadius(
@@ -68,7 +71,7 @@ final class ScrollBarIndicator: UIView {
             build: { trailingAnchor.constraint(equalTo: indicatorImageLabelStackView.trailingAnchor, constant: $0) },
             value: textConfig?.insets.right ?? stateConfig.contentInsets.right
         )
-        setupIndicatorImageViewState(image: stateConfig.image, size: stateConfig.imageSize)
+        setupIndicatorImageViewState(config: stateConfig)
         setupIndicatorLabelState(config: textConfig)
     }
 
@@ -79,29 +82,31 @@ final class ScrollBarIndicator: UIView {
     ) {
         guard let scrollBarLabelText = scrollBarLabelText, textConfig != nil else { return hideIndicatorLabel() }
         if scrollBarLabelText == indicatorLabel?.text { return }
-        indicatorLabel?.setup(text: scrollBarLabelText, direction: direction)
-        indicatorImageLabelStackView.layoutIfNeeded()
+        let animationDuration: TimeInterval = 0.15
+        indicatorLabel?.setup(text: scrollBarLabelText, direction: direction, duration: animationDuration)
+        UIView.animate(withDuration: animationDuration, animations: layoutIfNeeded)
         generateHapticFeedback(style: .light)
     }
 
     // MARK: - Private
 
-    private func setupIndicatorImageViewState(image: UIImage?, size: CGSize) {
+    private func setupIndicatorImageViewState(config: DMScrollBar.Configuration.Indicator.StateConfig) {
         buildIndicatorImageViewIfNeeded()
-        if let image {
+        if let image = config.image {
             indicatorImage?.isHidden = false
             indicatorImage?.alpha = 1
             indicatorImage?.image = image
+            indicatorImage?.accessibilityIdentifier = config.imageAccessibilityIdentifier
             setupConstraint(
                 constraint: &indicatorImageWidthConstraint,
                 build: indicatorImage?.widthAnchor.constraint(equalToConstant:),
-                value: size.width,
+                value: config.imageSize.width,
                 priority: .init(999)
             )
             setupConstraint(
                 constraint: &indicatorImageHeightConstraint,
                 build: indicatorImage?.heightAnchor.constraint(equalToConstant:),
-                value: size.height
+                value: config.imageSize.height
             )
         } else {
             indicatorImage?.isHidden = true
@@ -115,6 +120,7 @@ final class ScrollBarIndicator: UIView {
             showIndicatorLabel()
             indicatorLabel?.font = config.font
             indicatorLabel?.textColor = config.color
+            indicatorLabel?.accessibilityIdentifier = config.accessibilityIdentifier
             indicatorImageLabelStackView.spacing = config.insets.left
         } else {
             hideIndicatorLabel()
