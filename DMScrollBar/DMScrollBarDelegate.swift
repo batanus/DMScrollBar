@@ -17,6 +17,8 @@ public protocol DMScrollBarDelegate: AnyObject {
 // MARK: - DMScrollBarDelegate extension for Table View
 
 public extension DMScrollBarDelegate {
+    func infoLabelText(forContentOffset contentOffset: CGFloat, scrollIndicatorOffset: CGFloat) -> String? { nil }
+
     func scrollBarText(forContentOffset contentOffset: CGFloat, scrollIndicatorOffset: CGFloat) -> String? { nil }
 
     /// This is a convenience method to get the header title for the section at the specified content offset. This method will not work for table views with custom headers

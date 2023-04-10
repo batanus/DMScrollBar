@@ -82,9 +82,8 @@ final class ScrollBarIndicator: UIView {
     ) {
         guard let scrollBarLabelText = scrollBarLabelText, textConfig != nil else { return hideIndicatorLabel() }
         if scrollBarLabelText == indicatorLabel?.text { return }
-        let animationDuration: TimeInterval = 0.15
-        indicatorLabel?.setup(text: scrollBarLabelText, direction: direction, duration: animationDuration)
-        UIView.animate(withDuration: animationDuration, animations: layoutIfNeeded)
+        indicatorLabel?.setup(text: scrollBarLabelText, direction: direction)
+        indicatorImageLabelStackView.layoutIfNeeded()
         generateHapticFeedback(style: .light)
     }
 

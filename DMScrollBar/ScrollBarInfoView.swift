@@ -51,9 +51,8 @@ final class ScrollBarInfoView: UIView {
 
     func updateText(text: String, direction: CATransitionSubtype?) {
         if text == offsetLabel.text { return }
-        let animationDuration: TimeInterval = 0.15
-        offsetLabel.setup(text: text, direction: direction, duration: animationDuration)
-        UIView.animate(withDuration: animationDuration, animations: layoutIfNeeded)
+        offsetLabel.setup(text: text, direction: direction)
+        layoutIfNeeded()
         generateHapticFeedback(style: .light)
     }
 }
