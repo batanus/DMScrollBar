@@ -113,7 +113,11 @@ public class DMScrollBar: UIView {
             scrollIndicatorTopConstraint = scrollIndicator.topAnchor.constraint(equalTo: topAnchor, constant: topOffset)
             scrollIndicatorTopConstraint?.isActive = true
         }
-        scrollIndicator.setup(stateConfig: stateConfig, textConfig: indicatorTextConfig)
+        scrollIndicator.setup(
+            stateConfig: stateConfig,
+            textConfig: indicatorTextConfig,
+            accessibilityIdentifier: configuration.indicator.accessibilityIdentifier
+        )
     }
 
     private func setupAdditionalInfoView() {
@@ -494,6 +498,10 @@ public class DMScrollBar: UIView {
         return panGestureRecognizer?.state.isInactive == true
     }
 
+    private func scrollIndicatorOffset(forContentOffset contentOffset: CGFloat) -> CGFloat {
+        return contentOffset + scrollIndicatorTopOffset.y + infoView.frame.height / 2
+    }
+
     private func startHideTimerIfNeeded() {
         guard isPanGestureInactive else { return }
         invalidateHideTimer()
@@ -513,7 +521,10 @@ public class DMScrollBar: UIView {
 
     private func updateAdditionalInfoViewState(forScrollOffset scrollViewOffset: CGFloat, previousOffset: CGFloat?) {
         if configuration.infoLabel == nil { return }
-        guard let offsetLabelText = delegate?.infoLabelText(forOffset: scrollViewOffset) else { return animateAdditionalInfoViewHide() }
+        guard let offsetLabelText = delegate?.infoLabelText(
+            forContentOffset: scrollViewOffset,
+            scrollIndicatorOffset: scrollIndicatorOffset(forContentOffset: scrollViewOffset)
+        ) else { return animateAdditionalInfoViewHide() }
         animateAdditionalInfoViewShow()
         let direction: CATransitionSubtype? = {
             guard let previousOffset else { return nil }
@@ -533,7 +544,10 @@ public class DMScrollBar: UIView {
         }()
         scrollIndicator.updateScrollIndicatorText(
             direction: direction,
-            scrollBarLabelText: delegate?.scrollBarText(forOffset: scrollViewOffset),
+            scrollBarLabelText: delegate?.scrollBarText(
+                forContentOffset: scrollViewOffset,
+                scrollIndicatorOffset: scrollIndicatorOffset(forContentOffset: scrollViewOffset)
+            ),
             textConfig: textConfig
         )
     }

@@ -33,6 +33,7 @@ final class ScrollBarInfoView: UIView {
         offsetLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -textInsets.bottom).isActive = true
         offsetLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: textInsets.left).isActive = true
         offsetLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -textInsets.right).isActive = true
+        offsetLabel.accessibilityIdentifier = config.accessibilityIdentifier
 
         backgroundColor = config.backgroundColor
         layer.maskedCorners = config.roundedCorners.corners.cornerMask
