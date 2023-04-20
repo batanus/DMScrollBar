@@ -56,6 +56,12 @@ public class DMScrollBar: UIView {
         addGestureRecognizers()
     }
 
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let result = super.hitTest(point, with: event)
+        guard result == self else { return result }
+        return scrollIndicator.frame.minY...scrollIndicator.frame.maxY ~= point.y ? self : nil
+    }
+
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -619,6 +625,10 @@ extension DMScrollBar: UIGestureRecognizerDelegate {
     ) -> Bool {
         return gestureRecognizer == panGestureRecognizer && otherGestureRecognizer == longPressGestureRecognizer ||
             gestureRecognizer == longPressGestureRecognizer && otherGestureRecognizer == panGestureRecognizer
+    }
+
+    public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
