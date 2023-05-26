@@ -376,10 +376,11 @@ public class DMScrollBar: UIView {
         guard let scrollView else { return }
         let velocityMultiplier = interval(1, maxScrollViewOffset / maxScrollIndicatorOffset, 30)
         let velocity = interval(-7000, velocity.y * velocityMultiplier, 7000)
-        var scrollViewOffsetBounds = self.scrollViewOffsetBounds
+        var previousScrollViewOffsetBounds = self.scrollViewOffsetBounds
         var restOffset = scrollView.contentOffset.clamped(to: self.scrollViewOffsetBounds)
         let displacement = scrollView.contentOffset - restOffset
         let threshold = 0.5 / UIScreen.main.scale
+        var previousSafeInset = scrollView.safeAreaInsets
 
         let parameters = SpringTimingParameters(
             spring: spring,
@@ -391,8 +392,12 @@ public class DMScrollBar: UIView {
         decelerateAnimation = TimerAnimation(
             duration: parameters.duration,
             animations: { _, time in
-                restOffset.y += self.scrollViewOffsetBounds.height - scrollViewOffsetBounds.height
-                scrollViewOffsetBounds = self.scrollViewOffsetBounds
+                let topSafeInsetDif = previousSafeInset.top - scrollView.safeAreaInsets.top
+                let bottomSafeInsetDif = previousSafeInset.bottom - scrollView.safeAreaInsets.bottom
+                previousScrollViewOffsetBounds = previousScrollViewOffsetBounds.inset(by: UIEdgeInsets(top: topSafeInsetDif, left: 0, bottom: bottomSafeInsetDif, right: 0))
+                restOffset.y += self.scrollViewOffsetBounds.height - previousScrollViewOffsetBounds.height + topSafeInsetDif + bottomSafeInsetDif
+                previousScrollViewOffsetBounds = self.scrollViewOffsetBounds
+                previousSafeInset = scrollView.safeAreaInsets
                 let offset = restOffset + parameters.value(at: time)
                 scrollView.setContentOffset(offset, animated: false)
             },
