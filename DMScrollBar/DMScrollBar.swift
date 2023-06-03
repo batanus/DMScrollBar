@@ -82,6 +82,7 @@ public class DMScrollBar: UIView {
 
     private func setupScrollView() {
         scrollView?.showsVerticalScrollIndicator = false
+        scrollView?.layoutIfNeeded()
     }
 
     private func setupScrollIndicator() {
