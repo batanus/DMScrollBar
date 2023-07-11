@@ -1,3 +1,5 @@
+import UIKit
+
 final class ScrollBarInfoView: UIView {
     private let offsetLabel = UILabel()
 

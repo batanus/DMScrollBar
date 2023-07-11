@@ -1,3 +1,5 @@
+import UIKit
+
 extension DMScrollBar {
     public struct Configuration: Equatable {
         /// Indicates if the scrollbar should always be visible
