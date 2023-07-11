@@ -1,3 +1,5 @@
+import UIKit
+
 final class ScrollBarIndicator: UIView {
     private var indicatorImageWidthConstraint: NSLayoutConstraint?
     private var indicatorImageHeightConstraint: NSLayoutConstraint?

@@ -1,3 +1,5 @@
+import UIKit
+
 extension DMScrollBar.Configuration.RoundedCorners.Corner {
     var cornerMask: CACornerMask {
         switch self {
