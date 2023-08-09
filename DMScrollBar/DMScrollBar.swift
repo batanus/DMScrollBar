@@ -375,6 +375,7 @@ public class DMScrollBar: UIView {
             animations: { [weak self] _, time in
                 guard let self else { return }
                 let newY = self.scrollOffsetFromScrollIndicatorOffset(parameters.value(at: time).y)
+                if abs(scrollView.contentOffset.y - newY) < parameters.threshold { return }
                 scrollView.setContentOffset(CGPoint(x: 0, y: newY), animated: false)
             }, completion: { [weak self] finished in
                 guard let self else { return }
