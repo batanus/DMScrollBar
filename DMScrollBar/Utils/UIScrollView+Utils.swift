@@ -8,9 +8,13 @@ private enum AssociatedKeys {
 public extension UIScrollView {
     var scrollBar: DMScrollBar? {
         get {
-            objc_getAssociatedObject(self, &AssociatedKeys.scrollBar) as? DMScrollBar
+            withUnsafePointer(to: &AssociatedKeys.scrollBar) {
+                objc_getAssociatedObject(self, $0) as? DMScrollBar
+            }
         } set {
-            objc_setAssociatedObject(self, &AssociatedKeys.scrollBar, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            withUnsafePointer(to: &AssociatedKeys.scrollBar) {
+                objc_setAssociatedObject(self, $0, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            }
         }
     }
 
