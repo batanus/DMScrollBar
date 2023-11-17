@@ -347,7 +347,6 @@ public class DMScrollBar: UIView {
 
     private func startDeceleration(withVelocity velocity: CGPoint) {
         guard let scrollView else { return }
-
         let parameters = DecelerationTimingParameters(
             initialValue: scrollIndicatorTopOffset,
             initialVelocity: velocity,
