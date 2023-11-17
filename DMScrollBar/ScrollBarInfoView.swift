@@ -55,6 +55,8 @@ final class ScrollBarInfoView: UIView {
         if text == offsetLabel.text { return }
         offsetLabel.setup(text: text, direction: direction)
         layoutIfNeeded()
+        #if !os(visionOS)
         generateHapticFeedback(style: .light)
+        #endif
     }
 }

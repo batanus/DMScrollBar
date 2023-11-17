@@ -270,7 +270,10 @@ public class DMScrollBar: UIView {
         switch (isSignificantVelocity, isOffsetInScrollBounds) {
         case (true, true): startDeceleration(withVelocity: velocity)
         case (true, false): bounceScrollViewToBoundsIfNeeded(velocity: velocity)
-        case (false, true): generateHapticFeedback()
+        case (false, true):
+            #if !os(visionOS)
+            generateHapticFeedback()
+            #endif
         case (false, false): bounceScrollViewToBoundsIfNeeded(velocity: .zero)
         }
     }
@@ -282,10 +285,14 @@ public class DMScrollBar: UIView {
             gestureInteractionStarted()
         case .cancelled where panGestureRecognizer?.state.isInactive == true:
             gestureInteractionEnded(willDecelerate: false)
+            #if !os(visionOS)
             generateHapticFeedback()
+            #endif
         case .ended, .failed:
             gestureInteractionEnded(willDecelerate: false)
+            #if !os(visionOS)
             generateHapticFeedback()
+            #endif
         default: break
         }
     }
@@ -294,7 +301,9 @@ public class DMScrollBar: UIView {
         let scrollOffset = scrollOffsetFromScrollIndicatorOffset(scrollIndicatorTopConstraint?.constant ?? 0)
         updateAdditionalInfoViewState(forScrollOffset: scrollOffset, previousOffset: nil)
         invalidateHideTimer()
+        #if !os(visionOS)
         generateHapticFeedback()
+        #endif
         updateScrollIndicatorText(
             forScrollOffset: scrollOffset,
             previousOffset: nil,
@@ -326,7 +335,15 @@ public class DMScrollBar: UIView {
         }
     }
 
-    // MARK: - Decelartion & Bounce animations
+    // MARK: - Deceleration & Bounce animations
+
+    private var scale: CGFloat {
+        #if os(visionOS)
+        1
+        #else
+        UIScreen.main.scale
+        #endif
+    }
 
     private func startDeceleration(withVelocity velocity: CGPoint) {
         guard let scrollView else { return }
@@ -334,7 +351,7 @@ public class DMScrollBar: UIView {
             initialValue: scrollIndicatorTopOffset,
             initialVelocity: velocity,
             decelerationRate: UIScrollView.DecelerationRate.normal.rawValue,
-            threshold: 0.5 / UIScreen.main.scale
+            threshold: 0.5 / scale
         )
 
         let destination = parameters.destination
@@ -380,7 +397,7 @@ public class DMScrollBar: UIView {
         var previousScrollViewOffsetBounds = self.scrollViewOffsetBounds
         var restOffset = scrollView.contentOffset.clamped(to: self.scrollViewOffsetBounds)
         let displacement = scrollView.contentOffset - restOffset
-        let threshold = 0.5 / UIScreen.main.scale
+        let threshold = 0.5 / scale
         var previousSafeInset = scrollView.safeAreaInsets
 
         let parameters = SpringTimingParameters(
@@ -422,8 +439,8 @@ public class DMScrollBar: UIView {
             return 0
         }()
         if overscroll == 0 { return }
-        let additionalStiffnes = (overscroll / scrollView.frame.height) * 400
-        bounce(withVelocity: velocity, spring: Spring(mass: 1, stiffness: 100 + additionalStiffnes, dampingRatio: 1))
+        let additionalStiffness = (overscroll / scrollView.frame.height) * 400
+        bounce(withVelocity: velocity, spring: Spring(mass: 1, stiffness: 100 + additionalStiffness, dampingRatio: 1))
     }
 
     private func invalidateDecelerateAnimation() {
@@ -622,7 +639,7 @@ public class DMScrollBar: UIView {
     }
 }
 
-// MARK: - UIGestureRecognizerDelegateg
+// MARK: - UIGestureRecognizerDelegate
 
 extension DMScrollBar: UIGestureRecognizerDelegate {
     public func gestureRecognizer(

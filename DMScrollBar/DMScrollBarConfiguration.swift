@@ -11,7 +11,7 @@ extension DMScrollBar {
         /// Indicates if scroll view should decelerate when ending scroll bar interaction with velocity
         public let shouldDecelerate: Bool
 
-        /// Inficator configuration, which is placed on the right side
+        /// Indicator configuration, which is placed on the right side
         public let indicator: Indicator
         
         /// Info label configuration, which appears during indicator scrolling. If nil - the info label will be hidden
@@ -311,7 +311,7 @@ extension DMScrollBar.Configuration {
         /// Indicates maximum width of info label. If nil is passed - the info label will grow maximum to the leading side of the screen
         public let maximumWidth: CGFloat?
 
-        /// Info label corenrs which should be rounded
+        /// Info label corners which should be rounded
         public let roundedCorners: RoundedCorners
 
         /// Info label show/hide animation settings
@@ -327,7 +327,7 @@ extension DMScrollBar.Configuration {
         ///   - backgroundColor: Background color of the info label
         ///   - textInsets: Indicates text insets from the info label to its background
         ///   - maximumWidth: Indicates maximum width of info label. If nil is passed - the info label will grow maximum to the leading side of the screen
-        ///   - roundedCorners: Info label corenrs which should be rounded
+        ///   - roundedCorners: Info label corners which should be rounded
         ///   - animation: Info label show/hide animation settings
         ///   - accessibilityIdentifier: Accessibility identifier of the info label
         public init(

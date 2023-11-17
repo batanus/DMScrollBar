@@ -86,7 +86,9 @@ final class ScrollBarIndicator: UIView {
         if scrollBarLabelText == indicatorLabel?.text { return }
         indicatorLabel?.setup(text: scrollBarLabelText, direction: direction)
         indicatorImageLabelStackView.layoutIfNeeded()
+        #if !os(visionOS)
         generateHapticFeedback(style: .light)
+        #endif
     }
 
     // MARK: - Private

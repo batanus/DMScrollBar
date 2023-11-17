@@ -28,6 +28,7 @@ func setupConstraint(constraint: inout NSLayoutConstraint?, build: ((CGFloat) ->
     setupConstraint(constraint: &constraint, build: build, value: value, priority: priority)
 }
 
+@available(visionOS, unavailable)
 func generateHapticFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle = .heavy) {
     UIImpactFeedbackGenerator(style: style).impactOccurred()
 }
