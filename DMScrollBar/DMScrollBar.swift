@@ -393,7 +393,10 @@ public class DMScrollBar: UIView {
 
     private func bounce(withVelocity velocity: CGPoint, spring: Spring = .default) {
         guard let scrollView else { return }
-        let velocityMultiplier = interval(1, maxScrollViewOffset / maxScrollIndicatorOffset, 30)
+        let velocityMultiplier: CGFloat = {
+            guard maxScrollIndicatorOffset != 0 else { return 1 }
+            return interval(1, maxScrollViewOffset / maxScrollIndicatorOffset, 30)
+        }()
         let velocity = interval(-7000, velocity.y * velocityMultiplier, 7000)
         var previousScrollViewOffsetBounds = self.scrollViewOffsetBounds
         var restOffset = scrollView.contentOffset.clamped(to: self.scrollViewOffsetBounds)
@@ -493,14 +496,20 @@ public class DMScrollBar: UIView {
 
     private func scrollOffsetFromScrollIndicatorOffset(_ scrollIndicatorOffset: CGFloat) -> CGFloat {
         let adjustedScrollIndicatorOffset = adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset, isPanGestureSource: true)
-        let scrollIndicatorOffsetPercent = (adjustedScrollIndicatorOffset - minScrollIndicatorOffset) / (maxScrollIndicatorOffset - minScrollIndicatorOffset)
+        let indicatorRange = maxScrollIndicatorOffset - minScrollIndicatorOffset
+        guard indicatorRange != 0 else { return minScrollViewOffset }
+        
+        let scrollIndicatorOffsetPercent = (adjustedScrollIndicatorOffset - minScrollIndicatorOffset) / indicatorRange
         let scrollOffset = scrollIndicatorOffsetPercent * (maxScrollViewOffset - minScrollViewOffset) + minScrollViewOffset
 
         return scrollOffset
     }
 
     private func scrollIndicatorOffsetFromScrollOffset(_ scrollOffset: CGFloat, shouldAdjustOverscrollOffset: Bool) -> CGFloat {
-        let scrollOffsetPercent = (scrollOffset - minScrollViewOffset) / (maxScrollViewOffset - minScrollViewOffset)
+        let scrollRange = maxScrollViewOffset - minScrollViewOffset
+        guard scrollRange != 0 else { return minScrollIndicatorOffset }
+        
+        let scrollOffsetPercent = (scrollOffset - minScrollViewOffset) / scrollRange
         let scrollIndicatorOffset = scrollOffsetPercent * (maxScrollIndicatorOffset - minScrollIndicatorOffset) + minScrollIndicatorOffset
 
         return shouldAdjustOverscrollOffset ?
@@ -509,7 +518,10 @@ public class DMScrollBar: UIView {
     }
 
     private func adjustedScrollIndicatorOffsetForOverscroll(_ offset: CGFloat, isPanGestureSource: Bool) -> CGFloat {
-        let indicatorToScrollRatio = scrollIndicatorOffsetBounds.height / scrollViewOffsetBounds.height
+        let scrollViewHeight = scrollViewOffsetBounds.height
+        guard scrollViewHeight != 0 else { return offset }
+        
+        let indicatorToScrollRatio = scrollIndicatorOffsetBounds.height / scrollViewHeight
         let coefficient = isPanGestureSource ?
             RubberBand.defaultCoefficient * indicatorToScrollRatio :
             RubberBand.defaultCoefficient / indicatorToScrollRatio
