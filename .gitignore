@@ -18,6 +18,7 @@ xcuserdata/
 DerivedData
 *.hmap
 *.ipa
+.vscode/*
 
 # Swift Package Manager
 .swiftpm
