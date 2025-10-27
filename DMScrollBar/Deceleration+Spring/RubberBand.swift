@@ -2,6 +2,7 @@ import Foundation
 import CoreGraphics
 
 func rubberBandClamp(_ x: CGFloat, coeff: CGFloat, dim: CGFloat) -> CGFloat {
+    guard dim != 0 else { return 0 }
     return (1.0 - (1.0 / (x * coeff / dim + 1.0))) * dim
 }
 

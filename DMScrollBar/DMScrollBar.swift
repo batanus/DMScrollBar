@@ -394,6 +394,7 @@ public class DMScrollBar: UIView {
     private func bounce(withVelocity velocity: CGPoint, spring: Spring = .default) {
         guard let scrollView else { return }
         let velocityMultiplier: CGFloat = {
+            // Protect against division by zero
             guard maxScrollIndicatorOffset != 0 else { return 1 }
             return interval(1, maxScrollViewOffset / maxScrollIndicatorOffset, 30)
         }()
@@ -443,7 +444,10 @@ public class DMScrollBar: UIView {
             return 0
         }()
         if overscroll == 0 { return }
-        let additionalStiffness = (overscroll / scrollView.frame.height) * 400
+        let additionalStiffness: CGFloat = {
+            guard scrollView.frame.height > 0 else { return 0 }
+            return (overscroll / scrollView.frame.height) * 400
+        }()
         bounce(withVelocity: velocity, spring: Spring(mass: 1, stiffness: 100 + additionalStiffness, dampingRatio: 1))
     }
 
@@ -455,38 +459,44 @@ public class DMScrollBar: UIView {
     // MARK: - Calculations
 
     private var minScrollIndicatorOffset: CGFloat {
-        return configuration.indicator.normalState.insets.top
+        let offset = configuration.indicator.normalState.insets.top
+        return offset.isFinite ? offset : 0
     }
 
     private var maxScrollIndicatorOffset: CGFloat {
-        return frame.height - configuration.indicator.normalState.size.height - configuration.indicator.normalState.insets.bottom
+        let offset = frame.height - configuration.indicator.normalState.size.height - configuration.indicator.normalState.insets.bottom
+        return offset.isFinite ? offset : 0
     }
 
     private var minScrollViewOffset: CGFloat {
         guard let scrollView else { return 0 }
-        return -scrollView.contentInset.top - scrollView.safeAreaInsets.top
+        let offset = -scrollView.contentInset.top - scrollView.safeAreaInsets.top
+        return offset.isFinite ? offset : 0
     }
 
     private var maxScrollViewOffset: CGFloat {
         guard let scrollView else { return 0 }
-        return scrollView.contentSize.height - scrollView.frame.height + scrollView.safeAreaInsets.bottom + scrollView.contentInset.bottom
+        let offset = scrollView.contentSize.height - scrollView.frame.height + scrollView.safeAreaInsets.bottom + scrollView.contentInset.bottom
+        return offset.isFinite ? offset : 0
     }
 
     private var scrollIndicatorOffsetBounds: CGRect {
-        CGRect(
+        let height = maxScrollIndicatorOffset - minScrollIndicatorOffset
+        return CGRect(
             x: 0,
             y: minScrollIndicatorOffset,
             width: CGFloat.leastNonzeroMagnitude,
-            height: maxScrollIndicatorOffset - minScrollIndicatorOffset
+            height: height.isFinite && height >= 0 ? height : 0
         )
     }
 
     private var scrollViewOffsetBounds: CGRect {
-        CGRect(
+        let height = maxScrollViewOffset - minScrollViewOffset
+        return CGRect(
             x: 0,
             y: minScrollViewOffset,
             width: CGFloat.leastNonzeroMagnitude,
-            height: maxScrollViewOffset - minScrollViewOffset
+            height: height.isFinite && height >= 0 ? height : 0
         )
     }
 
@@ -497,20 +507,30 @@ public class DMScrollBar: UIView {
     private func scrollOffsetFromScrollIndicatorOffset(_ scrollIndicatorOffset: CGFloat) -> CGFloat {
         let adjustedScrollIndicatorOffset = adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset, isPanGestureSource: true)
         let indicatorRange = maxScrollIndicatorOffset - minScrollIndicatorOffset
-        guard indicatorRange != 0 else { return minScrollViewOffset }
+        
+        // If indicator cannot move, return minimum offset
+        guard indicatorRange != 0, indicatorRange.isFinite else { return minScrollViewOffset }
         
         let scrollIndicatorOffsetPercent = (adjustedScrollIndicatorOffset - minScrollIndicatorOffset) / indicatorRange
         let scrollOffset = scrollIndicatorOffsetPercent * (maxScrollViewOffset - minScrollViewOffset) + minScrollViewOffset
+
+        // Validate result before returning
+        guard scrollOffset.isFinite else { return minScrollViewOffset }
 
         return scrollOffset
     }
 
     private func scrollIndicatorOffsetFromScrollOffset(_ scrollOffset: CGFloat, shouldAdjustOverscrollOffset: Bool) -> CGFloat {
         let scrollRange = maxScrollViewOffset - minScrollViewOffset
-        guard scrollRange != 0 else { return minScrollIndicatorOffset }
+        
+        // If content is not scrollable, return minimum indicator position
+        guard scrollRange != 0, scrollRange.isFinite else { return minScrollIndicatorOffset }
         
         let scrollOffsetPercent = (scrollOffset - minScrollViewOffset) / scrollRange
         let scrollIndicatorOffset = scrollOffsetPercent * (maxScrollIndicatorOffset - minScrollIndicatorOffset) + minScrollIndicatorOffset
+
+        // Validate result before applying additional effects
+        guard scrollIndicatorOffset.isFinite else { return minScrollIndicatorOffset }
 
         return shouldAdjustOverscrollOffset ?
             adjustedScrollIndicatorOffsetForOverscroll(scrollIndicatorOffset, isPanGestureSource: false) :
@@ -519,9 +539,15 @@ public class DMScrollBar: UIView {
 
     private func adjustedScrollIndicatorOffsetForOverscroll(_ offset: CGFloat, isPanGestureSource: Bool) -> CGFloat {
         let scrollViewHeight = scrollViewOffsetBounds.height
-        guard scrollViewHeight != 0 else { return offset }
+        
+        // If bounds height is not positive, don't apply rubber band effect
+        guard scrollViewHeight > 0 else { return offset }
         
         let indicatorToScrollRatio = scrollIndicatorOffsetBounds.height / scrollViewHeight
+        
+        // Validate that ratio is a finite number
+        guard indicatorToScrollRatio.isFinite else { return offset }
+        
         let coefficient = isPanGestureSource ?
             RubberBand.defaultCoefficient * indicatorToScrollRatio :
             RubberBand.defaultCoefficient / indicatorToScrollRatio
@@ -541,7 +567,8 @@ public class DMScrollBar: UIView {
     }
 
     private func scrollIndicatorOffset(forContentOffset contentOffset: CGFloat) -> CGFloat {
-        return contentOffset + scrollIndicatorTopOffset.y + infoView.frame.height / 2
+        let offset = contentOffset + scrollIndicatorTopOffset.y + infoView.frame.height / 2
+        return offset.isFinite ? offset : 0
     }
 
     private func startHideTimerIfNeeded() {

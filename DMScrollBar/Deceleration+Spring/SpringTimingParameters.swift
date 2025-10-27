@@ -39,10 +39,12 @@ extension Spring {
     }
 
     var beta: CGFloat {
+        guard mass != 0 else { return 0 }
         return damping / (2 * mass)
     }
 
     var dampedNaturalFrequency: CGFloat {
+        guard mass != 0 else { return 0 }
         return sqrt(stiffness / mass) * sqrt(1 - dampingRatio * dampingRatio)
     }
 }

@@ -28,6 +28,12 @@ extension CGPoint {
 
         let dot = pv_dx * wv_dx + pv_dy * wv_dy
         let len_sq = wv_dx * wv_dx + wv_dy * wv_dy
+        
+        // Protect against division by zero when segment has zero length
+        guard len_sq != 0 else {
+            return distance(to: v)
+        }
+        
         let param = dot / len_sq
 
         var int_x, int_y: CGFloat /* intersection of normal to vw that goes through p */
